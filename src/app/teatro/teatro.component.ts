@@ -7,6 +7,34 @@ export class Pulsante {
   prenota;
   constructor(nome) {}
 }
+export class Prenotazione {
+  zona: string;
+  nome: string;
+  fila: number;
+  posto: number;
+  constructor(zona: string, nome: string, fila: number, posto: number) {
+    this.zona = zona;
+    this.nome = nome;
+    this.fila = fila;
+    this.posto = posto;
+  }
+}
+
+export class Selezione {
+  selezionati;
+  constructor() {}
+  aggiungi(prenotazione: Prenotazione) {
+    this.selezionati.push(prenotazione);
+  }
+  rimuovi(fila: number, posto: number) {
+    this.selezionati.map((old, i) => {
+      if (old.fila === fila && old.posto === posto) {
+        this.selezionati.splice(i, 1);
+      }
+    });
+  }
+}
+
 @Component({
   selector: 'app-teatro',
   templateUrl: './teatro.component.html',
@@ -20,7 +48,7 @@ export class TeatroComponent implements OnInit {
   nomeUtente: string;
   constructor() {}
   prenota(nome, fila, posto) {
-    console.log(nome, fila, posto);
+    console.log(this.platea);
   }
   ngOnInit() {
     this.sub = this.teatro$.subscribe((teatro: Teatro) => {
