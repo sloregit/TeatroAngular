@@ -18,8 +18,8 @@ export class TeatroDBService {
   public getPrenotazioni$(key): Observable<string> {
     return this.http.get<string>(this.URL + 'get?key=' + key);
   }
-  public SetPrenotazioni$(key, prenotazioni: string): Observable<string> {
-    return this.http.post<string>(this.URL + 'set?key=' + key, prenotazioni);
+  public SetPrenotazioni$(key, teatro: string): Observable<string> {
+    return this.http.post<string>(this.URL + 'set?key=' + key, teatro);
   }
   public getNewKey$(): Observable<string> {
     return this.http.get<string>(this.URL + 'new?secret=ssw2022');

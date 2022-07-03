@@ -17,6 +17,7 @@ export class GestioneComponent implements OnInit {
   sub: Subscription;
   key: string;
   newKey: string;
+  conferma: string;
   constructor(private TeatroDBservice: TeatroDBService) {
     this.filePlateaMax = new Array(7);
     this.postiPlateaMax = new Array(10);
@@ -28,7 +29,7 @@ export class GestioneComponent implements OnInit {
     console.log('Chiave Ottenuta');
     console.log(this.newKey);
   }
-  conferma(filePlatea, postiPlatea, filePalco, postipalco) {
+  aggiungiTeatro(filePlatea, postiPlatea, filePalco, postipalco) {
     this.teatro = new Teatro();
     this.teatro.platea = Array(filePlatea * 1)
       .fill('fila')
@@ -49,6 +50,12 @@ export class GestioneComponent implements OnInit {
           })
       );
     console.log(this.teatro);
+    this.TeatroDBservice.SetPrenotazioni$(
+      this.key,
+      JSON.stringify(this.teatro)
+    ).subscribe(
+      (conf) => (this.conferma = conf + 'Teatro aggiunto, Chiave: ' + this.key)
+    );
   }
   ngOnInit() {}
 }
