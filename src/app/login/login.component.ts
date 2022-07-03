@@ -11,7 +11,7 @@ export class LoginComponent implements OnInit {
   @Output() rapidoChange = new EventEmitter<boolean>();
   @Output() chiaveUtenteEmitter = new EventEmitter<string>();
   constructor() {}
-  accedi(rapido) {
+  accedi(rapido: boolean) {
     this.rapido = rapido;
     this.chiaveUtenteEmitter.emit(this.chiaveUtente);
     this.rapidoChange.emit(this.rapido);
