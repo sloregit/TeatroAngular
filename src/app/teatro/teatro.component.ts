@@ -24,15 +24,6 @@ export class Prenotazione {
     this.posto = posto;
   }
 }
-export class zona {
-  prenotazioni: Array<Array<string>>;
-  constructor(prenotazioni) {
-    this.prenotazioni = prenotazioni;
-  }
-  get prenotaZ() {
-    return console.log('prenotaZ');
-  }
-}
 export class Selezione {
   selezionati;
   constructor() {}
