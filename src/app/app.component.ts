@@ -27,6 +27,7 @@ export class AppComponent {
     this.logged = false;
     this.teatro$ = undefined;
     this.admin = false;
+    this.conferma = undefined;
   }
   aggiornaPrenotazioni(prenotazione: Prenotazione) {
     this.sub = this.teatro$.subscribe((teatro: Teatro) => {
