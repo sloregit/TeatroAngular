@@ -20,9 +20,7 @@ export class GestioneComponent implements OnInit {
     this.filePalchiMax = new Array(6);
     this.postiPalchiMax = new Array(4);
   }
-  foo(a) {
-    console.log(a);
-  }
+
   conferma(filePlatea, postiPlatea, filePalco, postipalco) {
     this.teatro = new Teatro();
     this.teatro.platea = Array(filePlatea * 1)
