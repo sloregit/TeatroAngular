@@ -25,6 +25,6 @@ export class GestioneComponent implements OnInit {
     this.filePalchiMax = new Array(6);
     this.postiPalchiMax = new Array(4);
   }
-
+  conferma() {}
   ngOnInit() {}
 }
