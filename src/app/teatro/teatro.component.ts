@@ -17,9 +17,9 @@ export class Prenotazione {
   nome: string;
   fila: number;
   posto: number;
-  constructor(zona: string, nome: string, fila: number, posto: number) {
-    this.zona = zona;
+  constructor(nome: string, zona: string, fila: number, posto: number) {
     this.nome = nome;
+    this.zona = zona;
     this.fila = fila;
     this.posto = posto;
   }
@@ -47,10 +47,13 @@ export class Selezione {
 export class TeatroComponent implements OnInit {
   @Input() teatro$;
   sub: Subscription;
-  platea;
+  @Input() rapido: boolean;
+  platea: Array<Array<string>>;
   palco: Array<Array<string>>;
   nomeUtente: string;
   nomePosto: string;
+  prenotazione: Prenotazione;
+  error;
   selezionato: Function = function () {
     if (this.nomePosto === null) {
       this.selezionato === true
@@ -59,10 +62,21 @@ export class TeatroComponent implements OnInit {
     }
   };
   constructor() {}
-
-  prenota(nomeUtente, nomePosto, fila, posto) {
+  confermaPrenotazioni() {
+    try {
+      this.sub = this.teatro$.subscribe((teatro: Teatro) => {
+        console.log(teatro[this.prenotazione.zona]);
+        teatro[this.prenotazione.zona][this.prenotazione.fila][
+          this.prenotazione.posto
+        ] = this.prenotazione.nome;
+      });
+    } catch (e) {}
+  }
+  prenota(nomeUtente, zona, fila, posto, nomePosto) {
     this.nomePosto = nomePosto;
-    console.log(nomeUtente, fila, posto);
+    if (this.nomeUtente && !nomePosto) {
+      this.prenotazione = new Prenotazione(nomeUtente, zona, fila, posto);
+    }
   }
   mostraNome(nome) {
     nome !== null ? (this.nomePosto = nome) : (this.nomePosto = undefined);

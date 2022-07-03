@@ -1,4 +1,4 @@
-import { Component, VERSION } from '@angular/core';
+import { Component, Input, Output } from '@angular/core';
 import { Observable, of, map, Subscription } from 'rxjs';
 import { TeatroDBService } from './teatro-db.service';
 
@@ -16,6 +16,7 @@ export class AppComponent {
   chiaveUtente: string;
   logged: boolean;
   sub: Subscription;
+  @Input() rapido: boolean;
   constructor(private TeatroDBService: TeatroDBService) {}
   indietro() {
     this.logged = false;

@@ -1,4 +1,4 @@
 <app-login *ngIf="!logged" (chiaveUtenteEmitter)="getDati($event)"></app-login>
-<app-teatro *ngIf="logged" [teatro$]="teatro$"></app-teatro>
+<app-teatro *ngIf="logged" [teatro$]="teatro$" [rapido]="rapido"></app-teatro>
 <button (click)="indietro()">Indietro</button>
 <app-gestione></app-gestione>
