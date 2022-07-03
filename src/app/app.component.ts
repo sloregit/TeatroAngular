@@ -1,6 +1,7 @@
 import { Component, Input, Output } from '@angular/core';
 import { Observable, of, map, Subscription } from 'rxjs';
 import { TeatroDBService } from './teatro-db.service';
+import { Prenotazione } from './teatro/teatro.component';
 
 export class Teatro {
   platea: Array<Array<string>>;
@@ -27,7 +28,7 @@ export class AppComponent {
     this.teatro$ = undefined;
     this.admin = false;
   }
-  aggiornaPrenotazioni(prenotazione) {
+  aggiornaPrenotazioni(prenotazione: Prenotazione) {
     this.sub = this.teatro$.subscribe((teatro: Teatro) => {
       teatro[prenotazione.zona][prenotazione.fila][prenotazione.posto] =
         prenotazione.nome;
@@ -36,7 +37,7 @@ export class AppComponent {
         this.chiaveUtente,
         JSON.stringify(teatro)
       ).subscribe({
-        next: (conf) =>
+        next: (conf: string) =>
           (this.conferma =
             conf +
             ': ' +
@@ -47,11 +48,12 @@ export class AppComponent {
             prenotazione.posto +
             ' in ' +
             prenotazione.zona),
-        error: (err) => 'Errore in aggiornaPrenotazioni: ' + err,
+        error: (err: string) =>
+          console.error('Errore in aggiornaPrenotazioni: ' + err),
       });
     });
   }
-
+  //Preleva i dati
   getDati(chiave: string) {
     this.chiaveUtente = chiave;
     this.sub = this.TeatroDBService.getPrenotazioni$(
@@ -59,11 +61,10 @@ export class AppComponent {
       this.chiaveUtente
     ).subscribe({
       next: (res: string) => {
-        console.log('ok getDati');
         this.teatro$ = of(JSON.parse(res));
         this.logged = true;
       },
-      error: (err) => console.error('Errore in getDati: ' + err),
+      error: (err: string) => console.error('Errore in getDati: ' + err),
     });
   }
 }
