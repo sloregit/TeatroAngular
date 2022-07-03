@@ -1,7 +1,7 @@
 <div>
   <form action="">
     <p>configura la platea</p>
-    <select [(ngModel)]="filePlatea" name="filePlatea" id="">
+    <select #filePlatea>
       <option selected="true" disabled="true" [value]="undefined">file</option>
       <option
         *ngFor="let file of filePlateaMax; let i = index"
@@ -10,8 +10,7 @@
         {{ i + 1 }}
       </option>
     </select>
-
-    <select [(ngModel)]="postiPlatea" name="postiPlatea" id="">
+    <select #postiPlatea>
       <option selected="true" disabled="true" [value]="undefined">posti</option>
       <option
         *ngFor="let file of postiPlateaMax; let i = index"
@@ -23,7 +22,7 @@
   </form>
   <form action="">
     <p>configura il palco</p>
-    <select [(ngModel)]="filePalco" name="filePalco" id="">
+    <select #filePalco>
       <option selected="true" disabled="true" [value]="undefined">file</option>
       <option
         *ngFor="let file of filePalchiMax; let i = index"
@@ -32,10 +31,10 @@
         {{ i + 1 }}
       </option>
     </select>
-    <select [(ngModel)]="postiPalco" name="postiPalco" id="">
+    <select #postiPalco>
       <option selected="true" disabled="true" [value]="undefined">posti</option>
       <option
-        *ngFor="let file of postiPalchiMax; let i = index"
+        *ngFor="let posti of postiPalchiMax; let i = index"
         [ngValue]="i + 1"
       >
         {{ i + 1 }}
@@ -43,5 +42,16 @@
     </select>
   </form>
   <br />
-  <button (click)="conferma()">Conferma</button>
+  <button
+    (click)="
+      conferma(
+        filePlatea.value,
+        postiPlatea.value,
+        filePalco.value,
+        postiPalco.value
+      )
+    "
+  >
+    Conferma
+  </button>
 </div>

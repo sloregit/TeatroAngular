@@ -1,19 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
-import { TeatroDBService } from '../teatro-db.service';
-
 import { Teatro } from '../app.component';
 
-export class Pulsante {
-  nome;
-  fila;
-  posto;
-  constructor(nome, fila, posto) {
-    this.nome = nome;
-    this.fila = fila;
-    this.posto = posto;
-  }
-}
 export class Prenotazione {
   zona: string;
   nome: string;
@@ -26,20 +14,6 @@ export class Prenotazione {
     this.posto = posto;
   }
 }
-export class Selezione {
-  selezionati;
-  constructor() {}
-  aggiungi(prenotazione: Prenotazione) {
-    this.selezionati.push(prenotazione);
-  }
-  rimuovi(fila: number, posto: number) {
-    this.selezionati.map((old, i) => {
-      if (old.fila === fila && old.posto === posto) {
-        this.selezionati.splice(i, 1);
-      }
-    });
-  }
-}
 
 @Component({
   selector: 'app-teatro',
@@ -47,8 +21,8 @@ export class Selezione {
   styleUrls: ['./teatro.component.css'],
 })
 export class TeatroComponent implements OnInit {
-  @Input() teatro$;
-  @Output() prenotazioneEmitter = new EventEmitter();
+  @Input() teatro$: Observable<Teatro>;
+  @Output() prenotazioneEmitter = new EventEmitter<Prenotazione>();
   sub: Subscription;
   @Input() rapido: boolean;
   platea: Array<Array<string>>;

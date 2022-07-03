@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { TeatroDBService } from '../teatro-db.service';
 
 @Component({
   selector: 'app-login',

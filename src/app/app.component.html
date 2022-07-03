@@ -10,12 +10,10 @@
     [rapido]="rapido"
     (prenotazioneEmitter)="aggiornaPrenotazioni($event)"
   ></app-teatro>
-  <div *ngIf="teatro$">
-    <p>{{ conferma }}</p>
-    <button (click)="indietro()">Indietro</button>
-  </div>
 </div>
 <button *ngIf="!admin && !logged" (click)="admin = true">
   Nuovo Spettacolo
 </button>
 <div *ngIf="admin"><app-gestione></app-gestione></div>
+<p *ngIf="teatro$">{{ conferma }}</p>
+<button *ngIf="teatro$ || admin" (click)="indietro()">Indietro</button>

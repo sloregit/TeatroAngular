@@ -23,6 +23,7 @@ export class AppComponent {
   indietro() {
     this.logged = false;
     this.teatro$ = undefined;
+    this.admin = false;
   }
   aggiornaPrenotazioni(prenotazione) {
     try {
