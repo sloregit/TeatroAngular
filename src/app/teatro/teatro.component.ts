@@ -3,11 +3,13 @@ import { Observable, Subscription } from 'rxjs';
 import { Teatro } from '../app.component';
 
 export class Pulsante {
-  pulsante;
-  prenota;
   nome;
-  constructor(nome) {
+  fila;
+  posto;
+  constructor(nome, fila, posto) {
     this.nome = nome;
+    this.fila = fila;
+    this.posto = posto;
   }
 }
 export class Prenotazione {
@@ -22,7 +24,15 @@ export class Prenotazione {
     this.posto = posto;
   }
 }
-
+export class zona {
+  prenotazioni: Array<Array<string>>;
+  constructor(prenotazioni) {
+    this.prenotazioni = prenotazioni;
+  }
+  get prenotaZ() {
+    return console.log('prenotaZ');
+  }
+}
 export class Selezione {
   selezionati;
   constructor() {}
@@ -51,16 +61,13 @@ export class TeatroComponent implements OnInit {
   nomeUtente: string;
   constructor() {}
   prenota($event) {
-    console.log($event);
+    $event.target.style = "'background-color' = 'red'";
   }
   ngOnInit() {
     this.sub = this.teatro$.subscribe((teatro: Teatro) => {
-      this.platea = teatro.platea.map((fila) =>
-        fila.map((posto) => new Pulsante(posto))
-      );
-
       this.platea = teatro.platea;
       this.palco = teatro.palco;
+      console.log(this.platea);
     });
   }
 }
