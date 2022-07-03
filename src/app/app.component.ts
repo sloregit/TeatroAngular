@@ -6,12 +6,14 @@ export class Teatro {
   platea: Array<Array<string>>;
   palco: Array<Array<string>>;
 }
+
 @Component({
   selector: 'my-app',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
+  //Chiavi utilizzate: 0ef3f513,1752a852
   teatro$: Observable<Teatro>;
   chiaveUtente: string;
   logged: boolean;
@@ -19,7 +21,6 @@ export class AppComponent {
   rapido: boolean;
   conferma: string;
   admin: boolean;
-  newKey: string; //1752a852
   constructor(private TeatroDBService: TeatroDBService) {}
   indietro() {
     this.logged = false;
@@ -51,7 +52,7 @@ export class AppComponent {
       });
     } catch (e) {}
   }
-  
+
   getDati(chiave: string) {
     this.chiaveUtente = chiave;
     this.sub = this.TeatroDBService.getPrenotazioni$(

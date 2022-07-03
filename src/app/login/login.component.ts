@@ -6,7 +6,6 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  Key: string = '0ef3f513';
   chiaveUtente: string;
   @Input() rapido: boolean;
   @Output() rapidoChange = new EventEmitter<boolean>();
