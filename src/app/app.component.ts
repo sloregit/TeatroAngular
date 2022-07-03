@@ -28,29 +28,28 @@ export class AppComponent {
     this.admin = false;
   }
   aggiornaPrenotazioni(prenotazione) {
-    try {
-      this.sub = this.teatro$.subscribe((teatro: Teatro) => {
-        teatro[prenotazione.zona][prenotazione.fila][prenotazione.posto] =
-          prenotazione.nome;
-        console.log(teatro);
-        this.TeatroDBService.SetPrenotazioni$(
-          this.chiaveUtente,
-          JSON.stringify(teatro)
-        ).subscribe(
-          (conf) =>
-            (this.conferma =
-              conf +
-              ': ' +
-              prenotazione.nome +
-              ' ha prenotato il posto ' +
-              'P' +
-              prenotazione.fila +
-              prenotazione.posto +
-              ' in ' +
-              prenotazione.zona)
-        );
+    this.sub = this.teatro$.subscribe((teatro: Teatro) => {
+      teatro[prenotazione.zona][prenotazione.fila][prenotazione.posto] =
+        prenotazione.nome;
+      console.log(teatro);
+      this.TeatroDBService.SetPrenotazioni$(
+        this.chiaveUtente,
+        JSON.stringify(teatro)
+      ).subscribe({
+        next: (conf) =>
+          (this.conferma =
+            conf +
+            ': ' +
+            prenotazione.nome +
+            ' ha prenotato il posto ' +
+            'P' +
+            prenotazione.fila +
+            prenotazione.posto +
+            ' in ' +
+            prenotazione.zona),
+        error: (err) => 'Errore in aggiornaPrenotazioni: ' + err,
       });
-    } catch (e) {}
+    });
   }
 
   getDati(chiave: string) {
@@ -64,8 +63,7 @@ export class AppComponent {
         this.teatro$ = of(JSON.parse(res));
         this.logged = true;
       },
-      error: (e) =>
-        console.error('Observer got an error: ' + JSON.stringify(e)),
+      error: (err) => console.error('Errore in getDati: ' + err),
     });
   }
 }

@@ -53,10 +53,17 @@ export class TeatroComponent implements OnInit {
     } catch (e) {}
   }
   ngOnInit() {
-    console.log(this.rapido);
-    this.sub = this.teatro$.subscribe((teatro: Teatro) => {
-      this.platea = teatro.platea;
-      this.palco = teatro.palco;
+    this.sub = this.teatro$.subscribe({
+      next: (teatro: Teatro) => {
+        this.platea = teatro.platea;
+        this.palco = teatro.palco;
+      },
+      error: (err) => (this.error = 'Observer got an error: ' + err),
     });
   }
 }
+/**.subscribe({
+    next: (v) => console.log(v),
+    error: (e) => console.error(e),
+    complete: () => console.info('complete') 
+}) */

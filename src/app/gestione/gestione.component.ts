@@ -49,7 +49,6 @@ export class GestioneComponent implements OnInit {
             return undefined;
           })
       );
-    console.log(this.teatro);
     this.TeatroDBservice.SetPrenotazioni$(
       this.key,
       JSON.stringify(this.teatro)
