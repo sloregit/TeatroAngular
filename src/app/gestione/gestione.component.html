@@ -1,57 +1,61 @@
-<div>
-  <form action="">
-    <p>configura la platea</p>
-    <select #filePlatea>
-      <option selected="true" disabled="true" [value]="undefined">file</option>
-      <option
-        *ngFor="let file of filePlateaMax; let i = index"
-        [ngValue]="i + 1"
-      >
-        {{ i + 1 }}
-      </option>
-    </select>
-    <select #postiPlatea>
-      <option selected="true" disabled="true" [value]="undefined">posti</option>
-      <option
-        *ngFor="let file of postiPlateaMax; let i = index"
-        [ngValue]="i + 1"
-      >
-        {{ i + 1 }}
-      </option>
-    </select>
-  </form>
-  <form action="">
-    <p>configura il palco</p>
-    <select #filePalco>
-      <option selected="true" disabled="true" [value]="undefined">file</option>
-      <option
-        *ngFor="let file of filePalchiMax; let i = index"
-        [ngValue]="i + 1"
-      >
-        {{ i + 1 }}
-      </option>
-    </select>
-    <select #postiPalco>
-      <option selected="true" disabled="true" [value]="undefined">posti</option>
-      <option
-        *ngFor="let posti of postiPalchiMax; let i = index"
-        [ngValue]="i + 1"
-      >
-        {{ i + 1 }}
-      </option>
-    </select>
-  </form>
-  <br />
-  <button
-    (click)="
-      conferma(
-        filePlatea.value,
-        postiPlatea.value,
-        filePalco.value,
-        postiPalco.value
-      )
-    "
-  >
-    Conferma
-  </button>
-</div>
+<form>
+  <input
+    type="text"
+    placeholder="Inserisci una chiave"
+    name="key"
+    [(ngModel)]="key"
+  />
+</form>
+<br />
+<button (click)="nuovaChiave()">Ottieni nuova chiave</button>
+<p>{{ key }}</p>
+<form>
+  <p>configura la platea</p>
+  <select #filePlatea>
+    <option selected="true" disabled="true" [value]="undefined">file</option>
+    <option *ngFor="let file of filePlateaMax; let i = index" [ngValue]="i + 1">
+      {{ i + 1 }}
+    </option>
+  </select>
+  <select #postiPlatea>
+    <option selected="true" disabled="true" [value]="undefined">posti</option>
+    <option
+      *ngFor="let file of postiPlateaMax; let i = index"
+      [ngValue]="i + 1"
+    >
+      {{ i + 1 }}
+    </option>
+  </select>
+</form>
+<form>
+  <p>configura il palco</p>
+  <select #filePalco>
+    <option selected="true" disabled="true" [value]="undefined">file</option>
+    <option *ngFor="let file of filePalchiMax; let i = index" [ngValue]="i + 1">
+      {{ i + 1 }}
+    </option>
+  </select>
+  <select #postiPalco>
+    <option selected="true" disabled="true" [value]="undefined">posti</option>
+    <option
+      *ngFor="let posti of postiPalchiMax; let i = index"
+      [ngValue]="i + 1"
+    >
+      {{ i + 1 }}
+    </option>
+  </select>
+</form>
+<br />
+<button
+  (click)="
+    conferma(
+      filePlatea.value,
+      postiPlatea.value,
+      filePalco.value,
+      postiPalco.value
+    )
+  "
+>
+  Conferma
+</button>
+<br />

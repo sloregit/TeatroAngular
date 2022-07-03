@@ -19,7 +19,7 @@ export class AppComponent {
   rapido: boolean;
   conferma: string;
   admin: boolean;
-  newKey: string;
+  newKey: string; //1752a852
   constructor(private TeatroDBService: TeatroDBService) {}
   indietro() {
     this.logged = false;
@@ -51,11 +51,7 @@ export class AppComponent {
       });
     } catch (e) {}
   }
-  nuovaChiave() {
-    this.TeatroDBService.getNewKey$().subscribe((val) => (this.newKey = val));
-    console.log('Chiave Ottenuta');
-    console.log(this.newKey);
-  }
+  
   getDati(chiave: string) {
     this.chiaveUtente = chiave;
     this.sub = this.TeatroDBService.getPrenotazioni$(

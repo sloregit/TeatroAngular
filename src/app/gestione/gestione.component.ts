@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, of, map, Subscription } from 'rxjs';
 import { Teatro } from '../app.component';
+import { TeatroDBService } from '../teatro-db.service';
 
 @Component({
   selector: 'app-gestione',
@@ -14,13 +15,19 @@ export class GestioneComponent implements OnInit {
   filePalchiMax: Array<string>;
   postiPalchiMax: Array<string>;
   sub: Subscription;
-  constructor() {
+  key: string;
+  newKey: string;
+  constructor(private TeatroDBservice: TeatroDBService) {
     this.filePlateaMax = new Array(7);
     this.postiPlateaMax = new Array(10);
     this.filePalchiMax = new Array(6);
     this.postiPalchiMax = new Array(4);
   }
-
+  nuovaChiave() {
+    this.TeatroDBservice.getNewKey$().subscribe((val) => (this.newKey = val));
+    console.log('Chiave Ottenuta');
+    console.log(this.newKey);
+  }
   conferma(filePlatea, postiPlatea, filePalco, postipalco) {
     this.teatro = new Teatro();
     this.teatro.platea = Array(filePlatea * 1)
