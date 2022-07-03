@@ -9,13 +9,14 @@ import { TeatroDBService } from '../teatro-db.service';
 export class LoginComponent implements OnInit {
   Key: string = '0ef3f513';
   chiaveUtente: string;
-  rapido: boolean;
-  @Output() rapidoEmitter = new EventEmitter<boolean>();
+  @Input() rapido: boolean;
+  @Output() rapidoChange = new EventEmitter<boolean>();
   @Output() chiaveUtenteEmitter = new EventEmitter<string>();
   constructor() {}
-  accedi() {
+  accedi(rapido) {
+    this.rapido = rapido;
     this.chiaveUtenteEmitter.emit(this.chiaveUtente);
-    this.rapidoEmitter.emit(this.rapido);
+    this.rapidoChange.emit(this.rapido);
   }
   ngOnInit() {}
 }

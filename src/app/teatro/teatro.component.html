@@ -8,7 +8,7 @@
       [ngClass]="posto !== null ? 'prenotato' : 'libero'"
       (click)="prenota(nomeUtente, 'platea', i, j, posto)"
     >
-      {{ posto }}
+      {{ 'P' + i + j }}
     </button>
   </span>
 </div>
@@ -18,10 +18,10 @@
       [ngClass]="posto !== null ? 'prenotato' : 'libero'"
       (click)="prenota(nomeUtente, 'palco', n, m, posto)"
     >
-      {{ posto }}
+      {{ 'P' + n + m }}
     </button>
   </span>
 </div>
 <p>{{ error }}</p>
 <p #show>{{ nomePosto }}</p>
-<button (click)="confermaPrenotazioni()">Conferma</button>
+<button *ngIf="!rapido" (click)="confermaPrenotazioni()">Conferma</button>

@@ -16,26 +16,39 @@ export class AppComponent {
   chiaveUtente: string;
   logged: boolean;
   sub: Subscription;
-  @Input() rapido: boolean;
+  rapido: boolean;
+  conferma: string;
   constructor(private TeatroDBService: TeatroDBService) {}
   indietro() {
     this.logged = false;
     this.teatro$ = undefined;
   }
+  aggiornaPrenotazioni(prenotazione) {
+    try {
+      this.sub = this.teatro$.subscribe((teatro: Teatro) => {
+        teatro[prenotazione.zona][prenotazione.fila][prenotazione.posto] =
+          prenotazione.nome;
+        console.log(teatro);
+        this.TeatroDBService.SetPrenotazioni$(
+          this.chiaveUtente,
+          JSON.stringify(teatro)
+        ).subscribe((conf) => (this.conferma = conf));
+      });
+    } catch (e) {}
+  }
   getDati(chiave: string) {
     this.chiaveUtente = chiave;
-    this.sub = this.TeatroDBService
-      .getPrenotazioni$
+    this.sub = this.TeatroDBService.getPrenotazioni$(
       //this.chiaveUtente
-      ()
-      .subscribe({
-        next: (res: string) => {
-          console.log('ok getDati');
-          this.teatro$ = of(JSON.parse(res));
-          this.logged = true;
-        },
-        error: (e) =>
-          console.error('Observer got an error: ' + JSON.stringify(e)),
-      });
+      this.chiaveUtente
+    ).subscribe({
+      next: (res: string) => {
+        console.log('ok getDati');
+        this.teatro$ = of(JSON.parse(res));
+        this.logged = true;
+      },
+      error: (e) =>
+        console.error('Observer got an error: ' + JSON.stringify(e)),
+    });
   }
 }

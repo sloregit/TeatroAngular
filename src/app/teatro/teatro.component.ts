@@ -1,5 +1,7 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
+import { TeatroDBService } from '../teatro-db.service';
+
 import { Teatro } from '../app.component';
 
 export class Pulsante {
@@ -46,6 +48,7 @@ export class Selezione {
 })
 export class TeatroComponent implements OnInit {
   @Input() teatro$;
+  @Output() prenotazioneEmitter = new EventEmitter();
   sub: Subscription;
   @Input() rapido: boolean;
   platea: Array<Array<string>>;
@@ -54,38 +57,35 @@ export class TeatroComponent implements OnInit {
   nomePosto: string;
   prenotazione: Prenotazione;
   error;
-  selezionato: Function = function () {
-    if (this.nomePosto === null) {
-      this.selezionato === true
-        ? (this.selezionato = false)
-        : (this.selezionato = true);
-    }
-  };
-  constructor() {}
+  constructor(private TeatroDBService: TeatroDBService) {}
   confermaPrenotazioni() {
     try {
-      this.sub = this.teatro$.subscribe((teatro: Teatro) => {
-        console.log(teatro[this.prenotazione.zona]);
-        teatro[this.prenotazione.zona][this.prenotazione.fila][
-          this.prenotazione.posto
-        ] = this.prenotazione.nome;
-      });
+      if (this.prenotazione) {
+        this.prenotazioneEmitter.emit(this.prenotazione);
+      }
+    } catch (e) {}
+  }
+  prenotaRapido(nomeUtente, zona, fila, posto, nomePosto) {
+    try {
+      this.nomePosto = nomePosto;
     } catch (e) {}
   }
   prenota(nomeUtente, zona, fila, posto, nomePosto) {
-    this.nomePosto = nomePosto;
-    if (this.nomeUtente && !nomePosto) {
-      this.prenotazione = new Prenotazione(nomeUtente, zona, fila, posto);
-    }
-  }
-  mostraNome(nome) {
-    nome !== null ? (this.nomePosto = nome) : (this.nomePosto = undefined);
+    try {
+      this.nomePosto = nomePosto;
+      if (this.nomeUtente && !nomePosto) {
+        this.prenotazione = new Prenotazione(nomeUtente, zona, fila, posto);
+        if (this.rapido) {
+          this.prenotazioneEmitter.emit(this.prenotazione);
+        }
+      }
+    } catch (e) {}
   }
   ngOnInit() {
+    console.log(this.rapido);
     this.sub = this.teatro$.subscribe((teatro: Teatro) => {
       this.platea = teatro.platea;
       this.palco = teatro.palco;
-      console.log(this.platea);
     });
   }
 }

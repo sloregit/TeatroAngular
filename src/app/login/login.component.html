@@ -6,12 +6,8 @@
     placeholder="inserisci una chiave"
   />
 </form>
-<button [disabled]="!chiaveUtente" (click)="accedi(); rapido = false">
-  Prenota
-</button>
-<button [disabled]="!chiaveUtente" (click)="accedi(); rapido = true">
-  Rapida
-</button>
+<button [disabled]="!chiaveUtente" (click)="accedi(false)">Prenota</button>
+<button [disabled]="!chiaveUtente" (click)="accedi(true)">Rapida</button>
 <div>
   <p></p>
 </div>
