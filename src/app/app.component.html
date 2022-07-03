@@ -1,6 +1,4 @@
-<div>login</div>
-<div>gestione</div>
-<div>teatro</div>
-<app-login></app-login>
+<app-login *ngIf="!logged" (chiaveUtenteEmitter)="getDati($event)"></app-login>
+<app-teatro *ngIf="logged" [teatro$]="teatro$"></app-teatro>
+<button (click)="indietro()">Indietro</button>
 <app-gestione></app-gestione>
-<app-teatro></app-teatro>
