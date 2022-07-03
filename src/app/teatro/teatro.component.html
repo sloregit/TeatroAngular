@@ -4,7 +4,7 @@
 </form>
 <div #platea value="platea" *ngFor="let fila of platea; let i = index">
   <span *ngFor="let posto of fila; let j = index">
-    <button class="Pulsante" (click)="prenota(posto, i, j)">{{ posto }}</button>
+    <button class="Pulsante" (click)="prenota($event)">{{ posto }}</button>
   </span>
 </div>
 <div #platea value="palco" *ngFor="let fila of palco; let i = index">
