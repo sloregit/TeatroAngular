@@ -51,12 +51,21 @@ export class TeatroComponent implements OnInit {
   palco: Array<Array<string>>;
   nomeUtente: string;
   nomePosto: string;
+  selezionato: Function = function () {
+    if (this.nomePosto === null) {
+      this.selezionato === true
+        ? (this.selezionato = false)
+        : (this.selezionato = true);
+    }
+  };
   constructor() {}
-  prenota(nome, fila, posto) {
-    console.log(nome, fila, posto);
+
+  prenota(nomeUtente, nomePosto, fila, posto) {
+    this.nomePosto = nomePosto;
+    console.log(nomeUtente, fila, posto);
   }
   mostraNome(nome) {
-    this.nomePosto = nome;
+    nome !== null ? (this.nomePosto = nome) : (this.nomePosto = undefined);
   }
   ngOnInit() {
     this.sub = this.teatro$.subscribe((teatro: Teatro) => {

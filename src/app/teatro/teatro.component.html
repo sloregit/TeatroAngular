@@ -6,17 +6,17 @@
   <span *ngFor="let posto of fila; let j = index">
     <button
       [ngClass]="posto !== null ? 'prenotato' : 'libero'"
-      (click)="posto !== null ? prenota(nome.value, i, j) : mostraNome(posto)"
+      (click)="prenota(posto, show.value, i, j)"
     >
       {{ posto }}
     </button>
   </span>
 </div>
-<div *ngFor="let fila of palco; let i = index">
-  <span *ngFor="let posto of fila; let j = index">
+<div *ngFor="let fila of palco; let n = index">
+  <span *ngFor="let posto of fila; let m = index">
     <button
       [ngClass]="posto !== null ? 'prenotato' : 'libero'"
-      (click)="prenota(nome.value, i, j)"
+      (click)="prenota(posto, show.vlue, n, m)"
     >
       {{ posto }}
     </button>
