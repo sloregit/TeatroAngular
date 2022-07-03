@@ -16,8 +16,8 @@ export class zona {
 export class TeatroComponent implements OnInit {
   @Input() teatro$;
   sub: Subscription;
-  platea: Array<Array<string>>;
-  palco: Array<Array<string>>;
+  platea: zona;
+  palco: zona;
   nomeUtente: string;
   constructor() {}
   prenota(zona) {

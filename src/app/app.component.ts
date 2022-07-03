@@ -1,10 +1,11 @@
 import { Component, VERSION } from '@angular/core';
 import { Observable, of, map, Subscription } from 'rxjs';
 import { TeatroDBService } from './teatro-db.service';
+import { zona } from './teatro/teatro.component';
 
 export class Teatro {
-  platea;
-  palco;
+  platea: zona;
+  palco: zona;
 }
 @Component({
   selector: 'my-app',
