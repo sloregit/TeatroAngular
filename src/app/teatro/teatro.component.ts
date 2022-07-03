@@ -40,7 +40,13 @@ export class TeatroComponent implements OnInit {
       }
     } catch (e) {}
   }
-  prenota(nomeUtente, zona, fila, posto, nomePosto) {
+  prenota(
+    nomeUtente: string,
+    zona: string,
+    fila: number,
+    posto: number,
+    nomePosto: string
+  ) {
     try {
       this.nomePosto = nomePosto;
       if (this.nomeUtente && !nomePosto) {
@@ -58,8 +64,8 @@ export class TeatroComponent implements OnInit {
         this.platea = teatro.platea;
         this.palco = teatro.palco;
       },
-      error: (err) => console.error('Errore in TeatroComponent onInit: ' + err),
+      error: (err: Error) =>
+        console.error('Errore in TeatroComponent onInit: ' + err),
     });
   }
 }
-
