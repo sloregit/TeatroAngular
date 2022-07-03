@@ -50,9 +50,13 @@ export class TeatroComponent implements OnInit {
   platea;
   palco: Array<Array<string>>;
   nomeUtente: string;
+  nomePosto: string;
   constructor() {}
-  prenota($event) {
-    $event.target.style = "'background-color' = 'red'";
+  prenota(nome, fila, posto) {
+    console.log(nome, fila, posto);
+  }
+  mostraNome(nome) {
+    this.nomePosto = nome;
   }
   ngOnInit() {
     this.sub = this.teatro$.subscribe((teatro: Teatro) => {
