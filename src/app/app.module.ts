@@ -8,7 +8,6 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { TeatroComponent } from './teatro/teatro.component';
 import { GestioneComponent } from './gestione/gestione.component';
-import { PulsanteComponent } from './pulsante/pulsante.component';
 
 @NgModule({
   imports: [BrowserModule, FormsModule, HttpClientModule],
@@ -16,7 +15,6 @@ import { PulsanteComponent } from './pulsante/pulsante.component';
     AppComponent,
     LoginComponent,
     TeatroComponent,
-    PulsanteComponent,
     GestioneComponent,
   ],
   bootstrap: [AppComponent],

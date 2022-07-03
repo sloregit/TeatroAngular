@@ -56,8 +56,9 @@ export class TeatroComponent implements OnInit {
   nomeUtente: string;
   nomePosto: string;
   prenotazione: Prenotazione;
+  prenotato: boolean;
   error;
-  constructor(private TeatroDBService: TeatroDBService) {}
+  constructor() {}
   confermaPrenotazioni() {
     try {
       if (this.prenotazione) {
@@ -65,18 +66,14 @@ export class TeatroComponent implements OnInit {
       }
     } catch (e) {}
   }
-  prenotaRapido(nomeUtente, zona, fila, posto, nomePosto) {
-    try {
-      this.nomePosto = nomePosto;
-    } catch (e) {}
-  }
   prenota(nomeUtente, zona, fila, posto, nomePosto) {
     try {
       this.nomePosto = nomePosto;
       if (this.nomeUtente && !nomePosto) {
         this.prenotazione = new Prenotazione(nomeUtente, zona, fila, posto);
-        if (this.rapido) {
+        if (this.rapido && !this.prenotato) {
           this.prenotazioneEmitter.emit(this.prenotazione);
+          this.prenotato = true;
         }
       }
     } catch (e) {}

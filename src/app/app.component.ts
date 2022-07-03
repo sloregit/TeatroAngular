@@ -18,6 +18,7 @@ export class AppComponent {
   sub: Subscription;
   rapido: boolean;
   conferma: string;
+  admin: boolean;
   constructor(private TeatroDBService: TeatroDBService) {}
   indietro() {
     this.logged = false;
@@ -32,7 +33,19 @@ export class AppComponent {
         this.TeatroDBService.SetPrenotazioni$(
           this.chiaveUtente,
           JSON.stringify(teatro)
-        ).subscribe((conf) => (this.conferma = conf));
+        ).subscribe(
+          (conf) =>
+            (this.conferma =
+              conf +
+              ': ' +
+              prenotazione.nome +
+              ' ha prenotato il posto ' +
+              'P' +
+              prenotazione.fila +
+              prenotazione.posto +
+              ' in ' +
+              prenotazione.zona)
+        );
       });
     } catch (e) {}
   }

@@ -1,13 +1,21 @@
-<app-login
-  *ngIf="!logged"
-  (chiaveUtenteEmitter)="getDati($event)"
-  [(rapido)]="rapido"
-></app-login>
-<app-teatro
-  *ngIf="logged && teatro$"
-  [teatro$]="teatro$"
-  [rapido]="rapido"
-  (prenotazioneEmitter)="aggiornaPrenotazioni($event)"
-></app-teatro>
-<button (click)="indietro()">Indietro</button>
-<app-gestione></app-gestione>
+<div *ngIf="!admin">
+  <app-login
+    *ngIf="!logged"
+    (chiaveUtenteEmitter)="getDati($event)"
+    [(rapido)]="rapido"
+  ></app-login>
+  <app-teatro
+    *ngIf="logged && teatro$"
+    [teatro$]="teatro$"
+    [rapido]="rapido"
+    (prenotazioneEmitter)="aggiornaPrenotazioni($event)"
+  ></app-teatro>
+  <div *ngIf="teatro$">
+    <p>{{ conferma }}</p>
+    <button (click)="indietro()">Indietro</button>
+  </div>
+</div>
+<button *ngIf="!admin && !logged" (click)="admin = true">
+  Nuovo Spettacolo
+</button>
+<div *ngIf="admin"><app-gestione></app-gestione></div>
