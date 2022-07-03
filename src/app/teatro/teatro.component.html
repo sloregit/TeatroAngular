@@ -1,6 +1,10 @@
 <p>okTeatro</p>
 <form>
-  <input type="text" [ngModel]="nomeUtente" />
+  <input type="text" name="nomeUtente" [ngModel]="nomeUtente" />
 </form>
-<div #platea *ngFor><button (click)="prenota(platea)"></button></div>
+<div #platea value="platea" *ngFor="let fila of platea">
+  <div *ngFor="let posto of fila">
+    <button class="Pulsante" (click)="prenota(platea)">{{ posto }}</button>
+  </div>
+</div>
 <div #palchi></div>

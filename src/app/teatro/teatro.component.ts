@@ -2,11 +2,9 @@ import { Component, OnInit, Input, Output } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { Teatro } from '../app.component';
 
-export class zona {
-  zona;
-  constructor(zona) {
-    this.zona = zona;
-  }
+export class Pulsante {
+  pulsante;
+  constructor(nome) {}
 }
 @Component({
   selector: 'app-teatro',
@@ -16,8 +14,8 @@ export class zona {
 export class TeatroComponent implements OnInit {
   @Input() teatro$;
   sub: Subscription;
-  platea: zona;
-  palco: zona;
+  platea: Array<Array<string>>;
+  palco: Array<Array<string>>;
   nomeUtente: string;
   constructor() {}
   prenota(zona) {
@@ -25,8 +23,9 @@ export class TeatroComponent implements OnInit {
   }
   ngOnInit() {
     this.sub = this.teatro$.subscribe((teatro: Teatro) => {
-      this.platea = new zona(teatro.platea);
-      this.palco = new zona(teatro.palco);
+      this.platea = teatro.platea;
+      this.palco = teatro.palco;
+      this.platea.map((fila) => fila.map((posto) => new Pulsante(posto)));
     });
   }
 }
