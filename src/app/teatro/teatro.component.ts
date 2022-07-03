@@ -58,7 +58,7 @@ export class TeatroComponent implements OnInit {
         this.platea = teatro.platea;
         this.palco = teatro.palco;
       },
-      error: (err) => (this.error = 'Observer got an error: ' + err),
+      error: (err) => console.error('Errore in TeatroComponent onInit: ' + err),
     });
   }
 }

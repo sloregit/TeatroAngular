@@ -52,9 +52,11 @@ export class GestioneComponent implements OnInit {
     this.TeatroDBservice.SetPrenotazioni$(
       this.key,
       JSON.stringify(this.teatro)
-    ).subscribe(
-      (conf) => (this.conferma = conf + 'Teatro aggiunto, Chiave: ' + this.key)
-    );
+    ).subscribe({
+      next: (conf) =>
+        (this.conferma = conf + 'Teatro aggiunto, Chiave: ' + this.key),
+      error: (err) => console.error('Errore in SetPrenotazioni$: ' + err),
+    });
   }
   ngOnInit() {}
 }
