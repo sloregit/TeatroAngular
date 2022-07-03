@@ -4,6 +4,7 @@ import { Teatro } from '../app.component';
 
 export class Pulsante {
   pulsante;
+  prenota;
   constructor(nome) {}
 }
 @Component({
@@ -18,8 +19,8 @@ export class TeatroComponent implements OnInit {
   palco: Array<Array<string>>;
   nomeUtente: string;
   constructor() {}
-  prenota(zona) {
-    console.log(zona);
+  prenota(nome, fila, posto) {
+    console.log(nome, fila, posto);
   }
   ngOnInit() {
     this.sub = this.teatro$.subscribe((teatro: Teatro) => {

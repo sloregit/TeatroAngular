@@ -2,9 +2,9 @@
 <form>
   <input type="text" name="nomeUtente" [ngModel]="nomeUtente" />
 </form>
-<div #platea value="platea" *ngFor="let fila of platea">
-  <div *ngFor="let posto of fila">
-    <button class="Pulsante" (click)="prenota(platea)">{{ posto }}</button>
+<div #platea value="platea" *ngFor="let fila of platea; let i = index">
+  <div *ngFor="let posto of fila; let j = index">
+    <button class="Pulsante" (click)="prenota(posto, i, j)">{{ posto }}</button>
   </div>
 </div>
 <div #palchi></div>
