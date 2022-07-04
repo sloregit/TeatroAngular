@@ -6,7 +6,6 @@
   <span *ngFor="let posto of fila; let j = index">
     <button
       [ngClass]="posto !== null ? 'prenotato' : 'libero'"
-      [ngClass]="prenotazione.sel == true ? 'selezionato' : 'libero'"
       (click)="prenota(nomeUtente, 'platea', i, j, posto)"
     >
       {{ 'P' + i + j }}

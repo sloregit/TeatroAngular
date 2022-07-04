@@ -7,17 +7,12 @@ export class Prenotazione {
   nome: string;
   fila: number;
   posto: number;
-  sel: boolean;
   constructor(nome: string, zona: string, fila: number, posto: number) {
     this.nome = nome;
     this.zona = zona;
     this.fila = fila;
     this.posto = posto;
-    this.sel = false;
   }
-  selezionato = () => {
-    this.sel === true ? false : true;
-  };
 }
 
 @Component({
@@ -56,7 +51,6 @@ export class TeatroComponent implements OnInit {
       this.nomePosto = nomePosto;
       if (this.nomeUtente && !nomePosto) {
         this.prenotazione = new Prenotazione(nomeUtente, zona, fila, posto);
-        this.prenotazione.sel = true;
         if (this.rapido && !this.prenotato) {
           this.prenotazioneEmitter.emit(this.prenotazione);
           this.prenotato = true;
