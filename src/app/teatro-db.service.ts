@@ -16,9 +16,7 @@ export class TeatroDBService {
     'https://eu-central-1.aws.data.mongodb-api.com/app/kvaas-giwjg/endpoint/';
   constructor(private http: HttpClient) {}
   public getPrenotazioni$(key: string): Observable<string> {
-    return this.http
-      .get<string>(this.URL + 'get?key=' + key)
-      .pipe(map((res) => res));
+    return this.http.get<string>(this.URL + 'get?key=' + key);
   }
   public SetPrenotazioni$(key: string, teatro: string): Observable<string> {
     return this.http.post<string>(this.URL + 'set?key=' + key, teatro);

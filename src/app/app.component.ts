@@ -1,5 +1,5 @@
-import { Component, Input, Output } from '@angular/core';
-import { Observable, of, map, Subscription } from 'rxjs';
+import { Component } from '@angular/core';
+import { Observable, of, Subscription } from 'rxjs';
 import { TeatroDBService } from './teatro-db.service';
 import { Prenotazione } from './teatro/teatro.component';
 
@@ -24,6 +24,7 @@ export class AppComponent {
   conferma: string;
   admin: boolean;
   constructor(private TeatroDBService: TeatroDBService) {}
+  //resetta i valori per tornare alla schermata iniziale
   indietro() {
     this.logged = false;
     this.teatro$ = undefined;
@@ -63,8 +64,7 @@ export class AppComponent {
       this.chiaveUtente
     ).subscribe({
       next: (res: string) => {
-        console.log(res);
-        //this.teatro$ = of(res);
+        this.teatro$ = of(JSON.parse(res));
         this.logged = true;
       },
       error: (err: string) => console.error('Errore in getDati: ' + err),
