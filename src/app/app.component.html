@@ -8,7 +8,6 @@
     *ngIf="logged && teatro$"
     [teatro$]="teatro$"
     [rapido]="rapido"
-    (prenotazioneEmitter)="aggiornaPrenotazioni($event)"
   ></app-teatro>
 </div>
 <button *ngIf="!admin && !logged" (click)="admin = true">

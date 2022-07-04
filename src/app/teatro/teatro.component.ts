@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
-import { filter, single } from 'rxjs/operators';
+import { filter, single, map } from 'rxjs/operators';
 import { Teatro } from '../app.component';
 import { TeatroDBService } from '../teatro-db.service';
 
@@ -43,28 +43,30 @@ export class TeatroComponent implements OnInit {
     posto: number,
     nomePosto: string
   ) {
-    this.sub = this.teatro$.subscribe((teatro: Teatro) => {
-      teatro[zona][fila][posto] = nomeUtente;
-      console.log(teatro);
-      this.TeatroDBservice.SetPrenotazioni$(
-        this.chiaveUtente,
-        JSON.stringify(teatro)
-      ).subscribe({
-        next: (conf: string) =>
-          (this.conferma =
-            conf +
-            ': ' +
-            nomePosto +
-            ' ha prenotato il posto ' +
-            'P' +
-            fila +
-            posto +
-            ' in ' +
-            zona),
-        error: (err: string) =>
-          console.error('Errore in aggiornaPrenotazioni: ' + err),
-      });
-    });
+    this.teatro$.pipe(
+      map((teatro: Teatro) => {
+        teatro[zona][fila][posto] = nomeUtente;
+        console.log(teatro);
+        this.sub = this.TeatroDBservice.SetPrenotazioni$(
+          this.chiaveUtente,
+          JSON.stringify(teatro)
+        ).subscribe({
+          next: (conf: string) =>
+            (this.conferma =
+              conf +
+              ': ' +
+              nomePosto +
+              ' ha prenotato il posto ' +
+              'P' +
+              fila +
+              posto +
+              ' in ' +
+              zona),
+          error: (err: string) =>
+            console.error('Errore in aggiornaPrenotazioni: ' + err),
+        });
+      })
+    );
   }
 
   confermaPrenotazioni() {
