@@ -16,6 +16,7 @@ export class Teatro {
 export class AppComponent {
   //Chiavi utilizzate: 0ef3f513,1752a852
   teatro$: Observable<Teatro>;
+  teatroOut: Teatro;
   chiaveUtente: string;
   logged: boolean;
   sub: Subscription;
@@ -33,25 +34,25 @@ export class AppComponent {
     this.sub = this.teatro$.subscribe((teatro: Teatro) => {
       teatro[prenotazione.zona][prenotazione.fila][prenotazione.posto] =
         prenotazione.nome;
-      console.log(teatro);
-      this.TeatroDBService.SetPrenotazioni$(
-        this.chiaveUtente,
-        JSON.stringify(teatro)
-      ).subscribe({
-        next: (conf: string) =>
-          (this.conferma =
-            conf +
-            ': ' +
-            prenotazione.nome +
-            ' ha prenotato il posto ' +
-            'P' +
-            prenotazione.fila +
-            prenotazione.posto +
-            ' in ' +
-            prenotazione.zona),
-        error: (err: string) =>
-          console.error('Errore in aggiornaPrenotazioni: ' + err),
-      });
+      this.teatroOut = teatro;
+    });
+    this.TeatroDBService.SetPrenotazioni$(
+      this.chiaveUtente,
+      JSON.stringify(this.teatroOut)
+    ).subscribe({
+      next: (conf: string) =>
+        (this.conferma =
+          conf +
+          ': ' +
+          prenotazione.nome +
+          ' ha prenotato il posto ' +
+          'P' +
+          prenotazione.fila +
+          prenotazione.posto +
+          ' in ' +
+          prenotazione.zona),
+      error: (err: string) =>
+        console.error('Errore in aggiornaPrenotazioni: ' + err),
     });
   }
   //Preleva i dati
