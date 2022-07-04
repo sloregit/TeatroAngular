@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { Observable, of, map, Subscription } from 'rxjs';
 
 export interface Spettacolo {
   nomeSpettacolo: string;
@@ -16,7 +16,9 @@ export class TeatroDBService {
     'https://eu-central-1.aws.data.mongodb-api.com/app/kvaas-giwjg/endpoint/';
   constructor(private http: HttpClient) {}
   public getPrenotazioni$(key: string): Observable<string> {
-    return this.http.get<string>(this.URL + 'get?key=' + key);
+    return this.http
+      .get<string>(this.URL + 'get?key=' + key)
+      .pipe(map((res) => res));
   }
   public SetPrenotazioni$(key: string, teatro: string): Observable<string> {
     return this.http.post<string>(this.URL + 'set?key=' + key, teatro);

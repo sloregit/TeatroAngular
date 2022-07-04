@@ -16,7 +16,7 @@ export class Teatro {
 export class AppComponent {
   //Chiavi utilizzate: 0ef3f513,1752a852
   teatro$: Observable<Teatro>;
-  teatroOut: Teatro;
+  teatroOut: string;
   chiaveUtente: string;
   logged: boolean;
   sub: Subscription;
@@ -34,7 +34,7 @@ export class AppComponent {
     this.sub = this.teatro$.subscribe((teatro: Teatro) => {
       teatro[prenotazione.zona][prenotazione.fila][prenotazione.posto] =
         prenotazione.nome;
-      this.teatroOut = teatro;
+      this.teatroOut = JSON.stringify(teatro);
     });
     this.TeatroDBService.SetPrenotazioni$(
       this.chiaveUtente,
@@ -63,7 +63,8 @@ export class AppComponent {
       this.chiaveUtente
     ).subscribe({
       next: (res: string) => {
-        this.teatro$ = of(JSON.parse(res));
+        console.log(res);
+        //this.teatro$ = of(res);
         this.logged = true;
       },
       error: (err: string) => console.error('Errore in getDati: ' + err),
