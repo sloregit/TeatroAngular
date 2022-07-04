@@ -22,9 +22,9 @@ export class Prenotazione {
 })
 export class TeatroComponent implements OnInit {
   @Input() teatro$: Observable<Teatro>;
+  @Input() rapido: boolean;
   @Output() prenotazioneEmitter = new EventEmitter<Prenotazione>();
   sub: Subscription;
-  @Input() rapido: boolean;
   platea: Array<Array<string>>;
   palco: Array<Array<string>>;
   nomeUtente: string;
@@ -61,6 +61,7 @@ export class TeatroComponent implements OnInit {
   ngOnInit() {
     this.sub = this.teatro$.subscribe({
       next: (teatro: Teatro) => {
+        console.log(teatro);
         this.platea = teatro.platea;
         this.palco = teatro.palco;
       },
