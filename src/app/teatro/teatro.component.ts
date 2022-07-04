@@ -30,7 +30,7 @@ export class TeatroComponent implements OnInit {
   nomeUtente: string;
   nomePosto: string;
   prenotazione: Prenotazione;
-  prenotato: boolean;
+  prenotato: boolean; 
   error;
   constructor() {}
   confermaPrenotazioni() {
