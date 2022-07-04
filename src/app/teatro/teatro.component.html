@@ -6,7 +6,7 @@
   <span *ngFor="let posto of fila; let j = index">
     <button
       [ngClass]="posto !== null ? 'prenotato' : 'libero'"
-      (click)="prenota(nomeUtente, 'platea', i, j, posto)"
+      (click)="prenota2(nomeUtente, 'platea', i, j, posto)"
     >
       {{ 'P' + i + j }}
     </button>
@@ -17,12 +17,12 @@
   <span *ngFor="let posto of fila; let m = index">
     <button
       [ngClass]="posto !== null ? 'prenotato' : 'libero'"
-      (click)="prenota(nomeUtente, 'palco', n, m, posto)"
+      (click)="prenota2(nomeUtente, 'palco', n, m, posto)"
     >
       {{ 'P' + n + m }}
     </button>
   </span>
 </div>
-<p>{{ error }}</p>
+<p>{{ conferma }}</p>
 <p #show>{{ nomePosto }}</p>
 <button *ngIf="!rapido" (click)="confermaPrenotazioni()">Conferma</button>
