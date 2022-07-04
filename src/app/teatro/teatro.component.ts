@@ -13,6 +13,7 @@ export class Prenotazione {
     this.zona = zona;
     this.fila = fila;
     this.posto = posto;
+    this.sel = false;
   }
   selezionato = () => {
     this.sel === true ? false : true;
