@@ -13,7 +13,7 @@ export class GestioneComponent implements OnInit {
   filePlateaMax: Array<string>;
   postiPlateaMax: Array<string>;
   filePalchiMax: Array<string>;
-  postiPalchiMax: Array<string>;
+  postiPalchiMax: Array<string>; 
   sub: Subscription;
   key: string;
   newKey: string;
