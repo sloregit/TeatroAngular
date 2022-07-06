@@ -67,7 +67,7 @@ export class GestioneComponent implements OnInit {
     });
   }
   //Genera un nuovo teatro e lo inserisce in corrispondenza della chiave;
-  //Utilizza la classe Gestore per creare il teatro
+  //Utilizza la classe GestoreTeatro per creare il teatro
   //(nel Template) +string per trasformare la stringa in numero
   aggiungiTeatro(
     filePlatea: number,
