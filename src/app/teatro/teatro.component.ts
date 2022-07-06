@@ -24,6 +24,7 @@ export class TeatroComponent implements OnInit {
   @Input() teatro$: Observable<Teatro>;
   @Input() rapido: boolean;
   @Output() prenotazioneEmitter = new EventEmitter<Prenotazione>();
+  @Input() conferma: string;
   sub: Subscription;
   platea: Array<Array<string>>;
   palco: Array<Array<string>>;
@@ -49,15 +50,21 @@ export class TeatroComponent implements OnInit {
     nomePosto: string
   ) {
     try {
+      if (nomePosto) throw 'Posto già prenotato da: ' + nomePosto;
+      if (!nomeUtente) throw 'Inserisci un nome';
       this.nomePosto = nomePosto;
-      if (this.nomeUtente && !nomePosto) {
+      if (this.nomeUtente) {
+        this.error = undefined;
+        this.conferma = undefined;
         this.prenotazione = new Prenotazione(nomeUtente, zona, fila, posto);
         if (this.rapido && !this.prenotato) {
           this.prenotazioneEmitter.emit(this.prenotazione);
           this.prenotato = true;
         }
       }
-    } catch (e) {}
+    } catch (e) {
+      this.error = e;
+    }
   }
   ngOnInit() {
     this.sub = this.teatro$.subscribe({

@@ -8,6 +8,7 @@
     *ngIf="logged && teatro$"
     [teatro$]="teatro$"
     [rapido]="rapido"
+    [conferma]="conferma"
     (prenotazioneEmitter)="aggiornaPrenotazioni($event)"
   ></app-teatro>
 </div>
@@ -17,5 +18,4 @@
 <div *ngIf="admin">
   <app-gestione></app-gestione>
 </div>
-<p *ngIf="teatro$">{{ conferma }}</p>
 <button *ngIf="teatro$ || admin" (click)="indietro()">Indietro</button>
