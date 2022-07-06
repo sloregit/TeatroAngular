@@ -39,7 +39,7 @@ export class AppComponent {
     });
     this.TeatroDBService.SetPrenotazioni$(
       this.chiaveUtente,
-      JSON.stringify(this.teatroOut)
+      this.teatroOut
     ).subscribe({
       next: (conf: string) =>
         (this.conferma =

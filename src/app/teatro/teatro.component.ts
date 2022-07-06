@@ -63,6 +63,8 @@ export class TeatroComponent implements OnInit {
       next: (teatro: Teatro) => {
         console.log(teatro);
         this.platea = teatro.platea;
+        console.log(teatro.platea);
+
         this.palco = teatro.palco;
       },
       error: (err: Error) =>
