@@ -25,9 +25,9 @@ export class GestioneComponent implements OnInit {
     this.postiPalchiMax = new Array(4);
   }
   nuovaChiave() {
-    this.TeatroDBservice.getNewKey$().subscribe((val) => (this.newKey = val));
-    console.log('Chiave Ottenuta');
-    console.log(this.newKey);
+    this.TeatroDBservice.getNewKey$().subscribe(
+      (chiave: string) => (this.newKey = chiave)
+    );
   }
   aggiungiTeatro(filePlatea, postiPlatea, filePalco, postipalco) {
     this.teatro = new Teatro();
