@@ -31,6 +31,7 @@ export class AppComponent {
     this.admin = false;
     this.conferma = undefined;
   }
+  //aggiunge la nuova prenotazione al teatro e invia tutto
   aggiornaPrenotazioni(prenotazione: Prenotazione) {
     this.sub = this.teatro$.subscribe((teatro: Teatro) => {
       teatro[prenotazione.zona][prenotazione.fila][prenotazione.posto] =

@@ -35,10 +35,11 @@ export class TeatroComponent implements OnInit {
   constructor() {}
   confermaPrenotazioni() {
     try {
-      if (this.prenotazione) {
-        this.prenotazioneEmitter.emit(this.prenotazione);
-      }
-    } catch (e) {}
+      if (!this.prenotazione) throw 'Prenotazione fallita';
+      this.prenotazioneEmitter.emit(this.prenotazione);
+    } catch (e) {
+      this.error = e;
+    }
   }
   prenota(
     nomeUtente: string,
