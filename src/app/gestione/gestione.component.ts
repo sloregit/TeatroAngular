@@ -62,9 +62,10 @@ export class GestioneComponent implements OnInit {
   //Genera un nuovo teatro e lo inserisce in corrispondenza della chiave;
   //Utilizza la classe Gestore per creare il teatro
   aggiungiTeatro(filePlatea, postiPlatea, filePalco, postipalco) {
+    console.log(typeof filePlatea);
     this.gestore = new GestoreTeatro();
     this.gestore.impostaTeatro(filePlatea, postiPlatea, filePalco, postipalco);
-    this.sub = this.TeatroDBservice.SetPrenotazioni$(
+    /*this.sub = this.TeatroDBservice.SetPrenotazioni$(
       this.key,
       JSON.stringify(this.gestore.teatro)
     ).subscribe({
@@ -72,7 +73,7 @@ export class GestioneComponent implements OnInit {
         (this.conferma = conf + ': Teatro aggiunto, Chiave: ' + this.key),
       error: (err) => console.error('Errore in SetPrenotazioni$: ' + err),
       complete: () => this.sub.unsubscribe(),
-    });
+    });*/
   }
   ngOnInit() {}
 }

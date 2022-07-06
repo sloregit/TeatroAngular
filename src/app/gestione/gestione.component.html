@@ -12,7 +12,7 @@
   <p>configura la platea</p>
   <select #filePlatea>
     <option selected="true" disabled="true" [value]="undefined">file</option>
-    <option *ngFor="let file of filePlateaMax; let i = index" [ngValue]="i + 1">
+    <option *ngFor="let file of filePlateaMax; let i = index" [ngValue]="i">
       {{ i + 1 }}
     </option>
   </select>
