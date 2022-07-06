@@ -45,13 +45,14 @@
   </select>
 </form>
 <br />
+<p>{{ error }}</p>
 <button
   (click)="
     aggiungiTeatro(
-      filePlatea.value,
-      postiPlatea.value,
-      filePalco.value,
-      postiPalco.value
+      +filePlatea.value,
+      +postiPlatea.value,
+      +filePalco.value,
+      +postiPalco.value
     )
   "
 >
