@@ -29,7 +29,6 @@ export class TeatroComponent implements OnInit {
   platea: Array<Array<string>>;
   palco: Array<Array<string>>;
   nomeUtente: string;
-  nomePosto: string;
   prenotazione: Prenotazione;
   prenotato: boolean;
   error;
@@ -39,7 +38,8 @@ export class TeatroComponent implements OnInit {
       if (!this.prenotazione) throw 'Prenotazione fallita';
       this.prenotazioneEmitter.emit(this.prenotazione);
     } catch (e) {
-      this.error = e;
+      this.error =
+        e + ': per prenotare devi inserire un nome e selezionare un posto';
     }
   }
   prenota(
@@ -54,7 +54,6 @@ export class TeatroComponent implements OnInit {
       this.conferma = undefined;
       if (nomePosto) throw 'Posto già prenotato da: ' + nomePosto;
       if (!nomeUtente) throw 'Inserisci un nome';
-      this.nomePosto = nomePosto;
       if (this.nomeUtente) {
         this.prenotazione = new Prenotazione(nomeUtente, zona, fila, posto);
         if (this.rapido && !this.prenotato) {
