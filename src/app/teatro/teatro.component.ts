@@ -50,12 +50,12 @@ export class TeatroComponent implements OnInit {
     nomePosto: string
   ) {
     try {
+      this.error = undefined;
+      this.conferma = undefined;
       if (nomePosto) throw 'Posto già prenotato da: ' + nomePosto;
       if (!nomeUtente) throw 'Inserisci un nome';
       this.nomePosto = nomePosto;
       if (this.nomeUtente) {
-        this.error = undefined;
-        this.conferma = undefined;
         this.prenotazione = new Prenotazione(nomeUtente, zona, fila, posto);
         if (this.rapido && !this.prenotato) {
           this.prenotazioneEmitter.emit(this.prenotazione);
