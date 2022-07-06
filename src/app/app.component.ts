@@ -55,6 +55,7 @@ export class AppComponent {
           prenotazione.zona),
       error: (err: string) =>
         console.error('Errore in aggiornaPrenotazioni: ' + err),
+      complete: () => this.sub.unsubscribe(),
     });
   }
   //Preleva i dati

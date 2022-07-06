@@ -37,6 +37,7 @@ export class TeatroComponent implements OnInit {
     try {
       if (!this.prenotazione) throw 'Prenotazione fallita';
       this.prenotazioneEmitter.emit(this.prenotazione);
+      this.sub.unsubscribe();
     } catch (e) {
       this.error =
         e + ': per prenotare devi inserire un nome e selezionare un posto';
@@ -60,6 +61,7 @@ export class TeatroComponent implements OnInit {
         if (this.rapido && !this.prenotato) {
           this.prenotazioneEmitter.emit(this.prenotazione);
           this.prenotato = true;
+          this.sub.unsubscribe();
         }
       }
     } catch (e) {
