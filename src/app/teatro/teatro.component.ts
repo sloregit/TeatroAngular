@@ -31,7 +31,7 @@ export class TeatroComponent implements OnInit {
   nomeUtente: string;
   prenotazione: Prenotazione;
   prenotato: boolean;
-  error;
+  error: string;
   constructor() {}
   confermaPrenotazioni() {
     try {
@@ -54,6 +54,7 @@ export class TeatroComponent implements OnInit {
       this.conferma = undefined;
       if (nomePosto) throw 'Posto già prenotato da: ' + nomePosto;
       if (!nomeUtente) throw 'Inserisci un nome';
+      if (this.prenotato) throw 'Prenotazione già effettuata, torna indietro';
       if (this.nomeUtente) {
         this.prenotazione = new Prenotazione(nomeUtente, zona, fila, posto);
         if (this.rapido && !this.prenotato) {
