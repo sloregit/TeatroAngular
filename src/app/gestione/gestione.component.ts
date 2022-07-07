@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, of, map, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { Teatro } from '../app.component';
 import { TeatroDBService } from '../teatro-db.service';
 
