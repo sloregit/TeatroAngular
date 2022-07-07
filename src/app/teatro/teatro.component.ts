@@ -1,4 +1,11 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  OnDestroy,
+  Input,
+  Output,
+  EventEmitter,
+} from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { Teatro } from '../app.component';
 
@@ -20,7 +27,7 @@ export class Prenotazione {
   templateUrl: './teatro.component.html',
   styleUrls: ['./teatro.component.css'],
 })
-export class TeatroComponent implements OnInit {
+export class TeatroComponent implements OnInit, OnDestroy {
   @Input() teatro$: Observable<Teatro>;
   @Input() rapido: boolean;
   @Output() prenotazioneEmitter = new EventEmitter<Prenotazione>();
@@ -37,7 +44,6 @@ export class TeatroComponent implements OnInit {
     try {
       if (!this.prenotazione) throw 'Prenotazione fallita';
       this.prenotazioneEmitter.emit(this.prenotazione);
-      this.sub.unsubscribe();
     } catch (e) {
       this.error =
         e + ': per prenotare devi inserire un nome e selezionare un posto';
@@ -61,7 +67,6 @@ export class TeatroComponent implements OnInit {
         if (this.rapido && !this.prenotato) {
           this.prenotazioneEmitter.emit(this.prenotazione);
           this.prenotato = true;
-          this.sub.unsubscribe();
         }
       }
     } catch (e) {
@@ -73,9 +78,13 @@ export class TeatroComponent implements OnInit {
       next: (teatro: Teatro) => {
         this.platea = teatro.platea;
         this.palco = teatro.palco;
+        console.log(teatro);
       },
       error: (err: Error) =>
         console.error('Errore in TeatroComponent onInit: ' + err),
     });
+  }
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 }

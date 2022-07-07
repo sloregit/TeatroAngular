@@ -56,7 +56,6 @@ export class GestioneComponent implements OnInit {
     this.postiPlateaMax = new Array(10);
     this.filePalchiMax = new Array(6);
     this.postiPalchiMax = new Array(4);
-    this.gestore = new GestoreTeatro();
   }
   //genera una nuova chiave
   nuovaChiave() {
@@ -77,8 +76,9 @@ export class GestioneComponent implements OnInit {
   ) {
     try {
       if (!this.key) throw 'Inserisci una chiave';
-      if (!filePlatea || postiPlatea || filePalco || postiPalco)
+      if (!filePlatea || !postiPlatea || !filePalco || !postiPalco)
         throw 'Devi prima completare la configurazione dei posti';
+      this.gestore = new GestoreTeatro();
       this.gestore.impostaTeatro(
         filePlatea,
         postiPlatea,
@@ -88,15 +88,17 @@ export class GestioneComponent implements OnInit {
     } catch (e) {
       this.conferma = e;
     }
-    this.sub = this.TeatroDBservice.SetPrenotazioni$(
-      this.key,
-      JSON.stringify(this.gestore.teatro)
-    ).subscribe({
-      next: (conf) =>
-        (this.conferma = conf + ': Teatro aggiunto, Chiave: ' + this.key),
-      error: (err) => console.error('Errore in SetPrenotazioni$: ' + err),
-      complete: () => this.sub.unsubscribe(),
-    });
+    if (this.gestore) {
+      this.sub = this.TeatroDBservice.SetPrenotazioni$(
+        this.key,
+        JSON.stringify(this.gestore.teatro)
+      ).subscribe({
+        next: (conf) =>
+          (this.conferma = conf + ': Teatro aggiunto, Chiave: ' + this.key),
+        error: (err) => console.error('Errore in SetPrenotazioni$: ' + err),
+        complete: () => this.sub.unsubscribe(),
+      });
+    }
   }
   ngOnInit() {}
 }

@@ -4,13 +4,12 @@
     name="key"
     [(ngModel)]="key"
     placeholder="Inserisci una chiave"
-
   />
 </form>
-<br />
 <button (click)="nuovaChiave()">Ottieni nuova chiave</button>
+<p *ngIf="newKey">{{ newKey }}</p>
 <form>
-  <p>configura la platea</p>
+  <p>Platea</p>
   <select #filePlatea>
     <option selected="true" disabled="true" [value]="undefined">file</option>
     <option *ngFor="let file of filePlateaMax; let i = index" [ngValue]="i">
@@ -28,7 +27,7 @@
   </select>
 </form>
 <form>
-  <p>configura il palco</p>
+  <p>Palco</p>
   <select #filePalco>
     <option selected="true" disabled="true" [value]="undefined">file</option>
     <option *ngFor="let file of filePalchiMax; let i = index" [ngValue]="i + 1">
