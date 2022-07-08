@@ -68,11 +68,10 @@ export class AppComponent {
       complete: () => this.sub.unsubscribe(),
     });
   }
-  //Preleva i dati
+  //Preleva i dati utilizzando la chiave ottenuta da LoginComponent
   getDati(chiave: string) {
     this.chiaveUtente = chiave;
     this.sub = this.TeatroDBService.getPrenotazioni$(
-      //this.chiaveUtente
       this.chiaveUtente
     ).subscribe({
       next: (res: string) => {
