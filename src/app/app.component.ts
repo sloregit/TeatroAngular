@@ -23,6 +23,7 @@ export class AppComponent {
   rapido: boolean;
   conferma: string;
   admin: boolean;
+  error: string;
   constructor(private TeatroDBService: TeatroDBService) {}
   //resetta i valori per tornare alla schermata iniziale
   indietro() {
@@ -30,13 +31,20 @@ export class AppComponent {
     this.teatro$ = undefined;
     this.admin = false;
     this.conferma = undefined;
+    this.teatroOut = undefined;
   }
   //aggiunge la nuova prenotazione al teatro e invia tutto
   aggiornaPrenotazioni(prenotazione: Prenotazione) {
-    this.sub = this.teatro$.subscribe((teatro: Teatro) => {
-      teatro[prenotazione.zona][prenotazione.fila][prenotazione.posto] =
-        prenotazione.nome;
-      this.teatroOut = JSON.stringify(teatro);
+    this.sub = this.teatro$.subscribe({
+      next: (teatro: Teatro) => {
+        teatro[prenotazione.zona][prenotazione.fila][prenotazione.posto] =
+          prenotazione.nome;
+        this.teatroOut = JSON.stringify(teatro);
+      },
+      error: (e) => {
+        this.error = 'Errore in aggiornaPrenotazioni: ' + e;
+        console.error('Errore in aggiornaPrenotazioni: ' + e);
+      },
     });
     this.TeatroDBService.SetPrenotazioni$(
       this.chiaveUtente,
@@ -53,8 +61,10 @@ export class AppComponent {
           prenotazione.posto +
           ' in ' +
           prenotazione.zona),
-      error: (err: string) =>
-        console.error('Errore in aggiornaPrenotazioni: ' + err),
+      error: (e: string) => {
+        this.error = 'Errore in aggiornaPrenotazioni: ' + e;
+        console.error('Errore in aggiornaPrenotazioni: ' + e);
+      },
       complete: () => this.sub.unsubscribe(),
     });
   }
@@ -69,7 +79,10 @@ export class AppComponent {
         this.teatro$ = of(JSON.parse(res));
         this.logged = true;
       },
-      error: (err: string) => console.error('Errore in getDati: ' + err),
+      error: (err: string) => {
+        this.error = 'Errore in getDati: ' + err;
+        console.error('Errore in getDati: ' + err);
+      },
     });
   }
 }
