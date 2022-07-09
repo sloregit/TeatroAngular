@@ -35,6 +35,7 @@ export class AppComponent {
     this.teatroOut = undefined;
   }
   //aggiunge la nuova prenotazione al teatro e invia tutto
+  //utilizza la new Prenotazione emessa in TeatroComponent
   aggiornaPrenotazioni(prenotazione: Prenotazione) {
     this.sub = this.teatro$.pipe(take(1)).subscribe({
       next: (teatro: Teatro) => {
