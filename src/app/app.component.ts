@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Observable, of, Subscription } from 'rxjs';
+import { take } from 'rxjs/operators';
 import { TeatroDBService } from './teatro-db.service';
 import { Prenotazione } from './teatro/teatro.component';
 
@@ -35,7 +36,7 @@ export class AppComponent {
   }
   //aggiunge la nuova prenotazione al teatro e invia tutto
   aggiornaPrenotazioni(prenotazione: Prenotazione) {
-    this.sub = this.teatro$.subscribe({
+    this.sub = this.teatro$.pipe(take(1)).subscribe({
       next: (teatro: Teatro) => {
         teatro[prenotazione.zona][prenotazione.fila][prenotazione.posto] =
           prenotazione.nome;
@@ -71,17 +72,17 @@ export class AppComponent {
   //Preleva i dati utilizzando la chiave ottenuta da LoginComponent
   getDati(chiave: string) {
     this.chiaveUtente = chiave;
-    this.sub = this.TeatroDBService.getPrenotazioni$(
-      this.chiaveUtente
-    ).subscribe({
-      next: (res: string) => {
-        this.teatro$ = of(JSON.parse(res));
-        this.logged = true;
-      },
-      error: (err: string) => {
-        this.error = 'Errore in getDati: ' + err;
-        console.error('Errore in getDati: ' + err);
-      },
-    });
+    this.sub = this.TeatroDBService.getPrenotazioni$(this.chiaveUtente)
+      .pipe(take(1))
+      .subscribe({
+        next: (res: string) => {
+          this.teatro$ = of(JSON.parse(res));
+          this.logged = true;
+        },
+        error: (err: string) => {
+          this.error = 'Errore in getDati: ' + err;
+          console.error('Errore in getDati: ' + err);
+        },
+      });
   }
 }
