@@ -10,7 +10,7 @@ import { Observable, Subscription } from 'rxjs';
 import { Teatro } from '../app.component';
 
 export class Prenotazione {
-  zona: string;
+  zona: string; 
   nome: string;
   fila: number;
   posto: number;
