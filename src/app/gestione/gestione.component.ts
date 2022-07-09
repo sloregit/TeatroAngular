@@ -61,7 +61,10 @@ export class GestioneComponent implements OnInit {
   nuovaChiave() {
     this.sub = this.TeatroDBservice.getNewKey$().subscribe({
       next: (chiave: string) => (this.newKey = chiave),
-      error: (err) => console.error('Errore in nuovaChiave:' + err),
+      error: (err) => {
+        (this.error = 'Errore in nuovaChiave:' + err),
+          console.error(this.error);
+      },
       complete: () => this.sub.unsubscribe(),
     });
   }
