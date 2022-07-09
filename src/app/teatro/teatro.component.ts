@@ -7,10 +7,11 @@ import {
   EventEmitter,
 } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
+import { take } from 'rxjs/operators';
 import { Teatro } from '../app.component';
 
 export class Prenotazione {
-  zona: string; 
+  zona: string;
   nome: string;
   fila: number;
   posto: number;
@@ -74,11 +75,10 @@ export class TeatroComponent implements OnInit, OnDestroy {
     }
   }
   ngOnInit() {
-    this.sub = this.teatro$.subscribe({
+    this.sub = this.teatro$.pipe(take(1)).subscribe({
       next: (teatro: Teatro) => {
         this.platea = teatro.platea;
         this.palco = teatro.palco;
-        console.log(teatro);
       },
       error: (err: Error) =>
         console.error('Errore in TeatroComponent onInit: ' + err),
