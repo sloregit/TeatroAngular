@@ -60,7 +60,7 @@ export class TeatroComponent implements OnInit, OnDestroy {
     try {
       this.error = undefined;
       this.conferma = undefined;
-      if (nomePosto) throw 'Posto già prenotato da: ' + nomePosto;
+      if (nomePosto) throw 'Posto prenotato da: ' + nomePosto;
       if (!nomeUtente) throw 'Inserisci un nome';
       if (this.prenotato) throw 'Prenotazione già effettuata, torna indietro';
       if (this.nomeUtente) {
