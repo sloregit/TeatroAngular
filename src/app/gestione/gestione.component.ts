@@ -86,7 +86,7 @@ export class GestioneComponent implements OnInit {
         postiPalco
       );
     } catch (e) {
-      this.conferma = e;
+      this.error = e;
     }
     if (this.gestore) {
       this.sub = this.TeatroDBservice.SetPrenotazioni$(
@@ -95,7 +95,10 @@ export class GestioneComponent implements OnInit {
       ).subscribe({
         next: (conf) =>
           (this.conferma = conf + ': Teatro aggiunto, Chiave: ' + this.key),
-        error: (err) => console.error('Errore in SetPrenotazioni$: ' + err),
+        error: (err) => {
+          (this.error = 'Errore in SetPrenotazioni$: ' + err),
+            console.error(this.error);
+        },
         complete: () => this.sub.unsubscribe(),
       });
     }
