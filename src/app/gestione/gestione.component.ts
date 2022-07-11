@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { take } from 'rxjs/operators';
 import { Teatro } from '../app.component';
 import { TeatroDBService } from '../teatro-db.service';
 
@@ -59,14 +60,15 @@ export class GestioneComponent implements OnInit {
   }
   //genera una nuova chiave
   nuovaChiave() {
-    this.sub = this.TeatroDBservice.getNewKey$().subscribe({
-      next: (chiave: string) => (this.newKey = chiave),
-      error: (err) => {
-        (this.error = 'Errore in nuovaChiave:' + err),
-          console.error(this.error);
-      },
-      complete: () => this.sub.unsubscribe(),
-    });
+    this.sub = this.TeatroDBservice.getNewKey$()
+      .pipe(take(1))
+      .subscribe({
+        next: (chiave: string) => (this.newKey = chiave),
+        error: (err) => {
+          (this.error = 'Errore in nuovaChiave:' + err),
+            console.error(this.error);
+        },
+      });
   }
   //Genera un nuovo teatro e lo inserisce in corrispondenza della chiave;
   //Utilizza la classe GestoreTeatro per creare il teatro
