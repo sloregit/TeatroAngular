@@ -1,4 +1,4 @@
-import './global-jasmine.ts';
+import './global-jasmine';
 import 'jasmine-core/lib/jasmine-core/jasmine-html.js';
 import 'jasmine-core/lib/jasmine-core/boot.js';
 
