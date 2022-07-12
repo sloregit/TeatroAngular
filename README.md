@@ -48,6 +48,6 @@ Ho preferito questa soluzione perchè, oltre alla questione estetica, mi sembrav
 
 Una volta inseriti tutti i campi è possibile generare un nuovo teatro, l'operazione viene gestita da una classe che crea un nuovo teatro vuoto delle dimensioni indicate.
 
-# angular-ivy-crjcpq
+## angular-ivy-xzskob
 
-[Edit on StackBlitz ⚡️](https://stackblitz.com/edit/angular-ivy-crjcpq)
+[Edit on StackBlitz ⚡️](https://stackblitz.com/edit/angular-ivy-xzskob)
