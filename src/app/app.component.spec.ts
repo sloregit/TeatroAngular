@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { TeatroDBService } from './teatro-db.service';
 import { GestioneComponent } from './gestione/gestione.component';
+import { FakesvcService } from './fakesvc.service';
 
 describe('Testing tests', () => {
   it('Vero = vero', () => expect(true).toBeTrue());
@@ -16,7 +17,10 @@ describe('AppComponent', () => {
     waitForAsync(() => {
       TestBed.configureTestingModule({
         imports: [BrowserModule, FormsModule, HttpClientModule],
-        providers: [AppComponent, TeatroDBService],
+        providers: [
+          AppComponent,
+          { provide: TeatroDBService, use: FakesvcService },
+        ],
       }).compileComponents();
     })
   );
@@ -25,6 +29,13 @@ describe('AppComponent', () => {
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeDefined();
   });
+  it('should contain string teatro'),
+    () => {
+      const fixture = TestBed.createComponent(AppComponent);
+      const app = fixture.debugElement.componentInstance;
+      app.getPrenotazioni$('chiave');
+      expect(app.teatro$).toEqual('s');
+    };
 });
 
 /*
