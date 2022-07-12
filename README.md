@@ -10,7 +10,7 @@ setPrenotazioni: richiede i dati al database
 
 getPrenotazioni: invia i dati al database
 
-getNewKey: inserisce una nuova chiave
+getNewKey: richiede una nuova chiave
 
 #### App.component
 
