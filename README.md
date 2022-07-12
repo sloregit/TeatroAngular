@@ -6,8 +6,10 @@
 
 #### TeatroDBservice(3 metodi)
 
-setPrenotazioni: richiede i dati al database,
+setPrenotazioni: richiede i dati al database
+
 getPrenotazioni: invia i dati al database
+
 getNewKey: inserisce una nuova chiave
 
 #### App.component
@@ -21,13 +23,19 @@ Quando viene ricevuta una prenotazione, essa contiene il nome, la zona, la fila 
 #### Teatro.component
 
 Il teatro vero e proprio, i dati vengono raccolti ed elaborati nella funzione OnInit, invocata subito dopo la creazione del component.
+
 Quando viene effettuata una prenotazione, rapida o normale, si innesca (prenotazione Emitter) che, inviando la nuova prenotazione al parent fa aggiornare il teatro.
+
 Ogni nuova prenotazione è istanza di una classe Prenotazione:
+
+```
 Prenotazione(nomePrenotazione, zona, fila, posto)
+```
 
 #### Login.component
 
-La pagina di login. Passa al parent la chiave utente e il tipo di prenotazione nel momento in cui si decide di procedere con la prenotazione
+La pagina di login.
+Passa al parent la chiave utente e il tipo di prenotazione nel momento in cui si decide di procedere con la prenotazione
 
 #### Gestione.component
 
