@@ -1,34 +1,33 @@
 import { TestBed, waitForAsync } from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { TeatroDBService } from './teatro-db.service';
+import { GestioneComponent } from './gestione/gestione.component';
 
 describe('Testing tests', () => {
   it('Vero = vero', () => expect(true).toBeTrue());
   it('Vero = falso', () => expect(false).toBeFalse());
 });
 
-describe('AppComponent',()=>{
-  beforeEach(
-    waitForAsync(()=>{
-      TestBed.configureTestingModule({
-        imports: [HttpClientModule],
-        providers: [AppComponent],
-      }).compileComponents()
-    }))
-  )
-}
-/*
 describe('AppComponent', () => {
   beforeEach(
     waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [HttpClientModule],
-        providers: [AppComponent],
+        imports: [BrowserModule, FormsModule, HttpClientModule],
+        providers: [AppComponent, TeatroDBService],
       }).compileComponents();
     })
   );
+  it('should create the app', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.debugElement.componentInstance;
+    expect(app).toBeDefined();
+  });
+});
 
+/*
   it('should create the app', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;

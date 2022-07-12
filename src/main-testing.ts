@@ -22,6 +22,9 @@ import {
 
 // stuff to test
 import './app/app.component.spec.ts';
+import './app/gestione/gestione.component.spec.ts';
+import './app/login/login.component.spec.ts';
+import './app/teatro/teatro.component.spec.ts';
 
 jasmine.getEnv().configure({ random: false });
 bootstrap();
