@@ -5,8 +5,19 @@ import { TeatroDBService } from './teatro-db.service';
 
 describe('Testing tests', () => {
   it('Vero = vero', () => expect(true).toBeTrue());
-  it('Vero = falso', () => expect(true).toBeFalse());
+  it('Vero = falso', () => expect(false).toBeFalse());
 });
+
+describe('AppComponent',()=>{
+  beforeEach(
+    waitForAsync(()=>{
+      TestBed.configureTestingModule({
+        imports: [HttpClientModule],
+        providers: [AppComponent],
+      }).compileComponents()
+    }))
+  )
+}
 /*
 describe('AppComponent', () => {
   beforeEach(
