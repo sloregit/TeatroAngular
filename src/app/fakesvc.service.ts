@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, map, Subscription, Subscriber } from 'rxjs';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class FakesvcService {
   constructor() {}
   public getPrenotazioni$(key: string): Observable<string> {
