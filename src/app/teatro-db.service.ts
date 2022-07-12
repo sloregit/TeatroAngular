@@ -10,7 +10,9 @@ export interface Teatro {
   platea: Array<Array<string>>;
   palco: Array<Array<string>>;
 }
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class TeatroDBService {
   URL: string =
     'https://eu-central-1.aws.data.mongodb-api.com/app/kvaas-giwjg/endpoint/';

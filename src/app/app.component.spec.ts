@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { TeatroDBService } from './teatro-db.service';
 import { GestioneComponent } from './gestione/gestione.component';
 import { FakesvcService } from './fakesvc.service';
+import { Observable } from 'rxjs';
 
 describe('Testing tests', () => {
   it('Vero = vero', () => expect(true).toBeTrue());
@@ -19,7 +20,7 @@ describe('AppComponent', () => {
         imports: [BrowserModule, FormsModule, HttpClientModule],
         providers: [
           AppComponent,
-          { provide: TeatroDBService, use: FakesvcService },
+          { provide: TeatroDBService, useClass: FakesvcService },
         ],
       }).compileComponents();
     })
@@ -34,7 +35,14 @@ describe('AppComponent', () => {
       const fixture = TestBed.createComponent(AppComponent);
       const app = fixture.debugElement.componentInstance;
       app.getPrenotazioni$('chiave');
-      expect(app.teatro$).toEqual('s');
+      expect(app.teatro$).toEqual(
+        new Observable((subscriber) =>
+          subscriber.next({
+            platea: ['Pippo', undefined, undefined],
+            palco: [undefined, 'Paperino', undefined],
+          })
+        )
+      );
     };
 });
 
