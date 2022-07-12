@@ -41,7 +41,7 @@ Passa al parent la chiave utente e il tipo di prenotazione nel momento in cui si
 
 Permette di creare una nuova sala e di inserirla in corrispondenza della chiave posseduta. Al bisogno, è possibile richiedere una nuova chiave.
 
-Gestione svolge un compito diverso rispetto agli altri e non ha a che fare con le prenotazioni, perciò è stato pensato come un component a se stante ed ho preferito renderlo indipendente per quanto riguarda le comunicazioni con il server.
+Gestione svolge un compito diverso rispetto agli altri e non ha a che fare con le prenotazioni, perciò è stato pensato come un component a sé stante ed ho preferito renderlo indipendente per quanto riguarda le comunicazioni con il server.
 
 Gli array fileMax,postiMax erano necessari per utilizzare i select + option.
 Ho preferito questa soluzione perchè, oltre alla questione estetica, mi sembrava migliore dal punto di vista della sicurezza, evitandomi di utilizzare troppi campi Input.
