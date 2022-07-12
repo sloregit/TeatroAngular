@@ -1,4 +1,4 @@
-##Progetto per l' Esame di Sviluppo di Servizi Web, anno 2021/22.
+## Progetto per l' Esame di Sviluppo di Servizi Web, anno 2021/22.
 
 L'applicazione gestisce le prenotazioni per tutte le sale inserite all'interno del database. Ad ogni sala è associata una chiave univoca.
 
