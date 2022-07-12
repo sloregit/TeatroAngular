@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { TeatroDBService } from './teatro-db.service';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -19,6 +19,6 @@ import { FakesvcService } from './fakesvc.service';
     GestioneComponent,
   ],
   bootstrap: [AppComponent],
-  providers: [TeatroDBService, FakesvcService, HttpClient],
+  providers: [TeatroDBService, FakesvcService],
 })
 export class AppModule {}

@@ -1,11 +1,19 @@
 import { TestBed, waitForAsync } from '@angular/core/testing';
+import { HttpClientModule } from '@angular/common/http';
+
+import { FakesvcService } from '../fakesvc.service';
+import { TeatroDBService } from '../teatro-db.service';
 import { GestioneComponent } from './gestione.component';
 
-describe('AppComponent', () => {
+describe('GestioneComponent', () => {
   beforeEach(
     waitForAsync(() => {
       TestBed.configureTestingModule({
-        providers: [GestioneComponent],
+        imports: [HttpClientModule],
+        providers: [
+          GestioneComponent,
+          { provide: TeatroDBService, useClass: FakesvcService },
+        ],
       }).compileComponents();
     })
   );
