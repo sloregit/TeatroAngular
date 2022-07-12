@@ -2,7 +2,7 @@
 
 ### L'applicazione gestisce le prenotazioni per tutte le sale inserite all'interno del database. Ad ogni sala è associata una chiave univoca.
 
-'''
+```
 4 component, 1 Service:
 
 TeatroDBservice(3 metodi)
@@ -30,7 +30,7 @@ Gestione svolge un compito diverso rispetto agli altri e non ha a che fare con l
 Gli array fileMax,postiMax erano necessari per utilizzare i select + option.
 Ho preferito questa soluzione perchè mi sembrava migliore per la sicurezza, evitandomi di utilizzare troppi campi Input.
 Una volta inseriti tutti i campi è possibile generare un nuovo teatro, l'operazione viene gestita da una classe che crea un nuovo teatro vuoto delle dimensioni indicate.
-'''
+```
 
 # angular-ivy-crjcpq
 
