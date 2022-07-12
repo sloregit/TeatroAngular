@@ -26,7 +26,6 @@ La pagina di login. Passa al parent la chiave utente e il tipo di prenotazione n
 Gestione.component
 Permette di creare una nuova sala e di inserirla in corrispondenza della chiave posseduta. Al bisogno, è possibile richiedere una nuova chiave.
 Gestione svolge un compito diverso rispetto agli altri e non ha a che fare con le prenotazioni, perciò è stato pensato come un component a se stante ed ho preferito renderlo indipendente per quanto riguarda le comunicazioni con il server.
-(immagino nella realtà sarebbe protetto da password di amministratore)
 Gli array fileMax,postiMax erano necessari per utilizzare i select + option.
 Ho preferito questa soluzione perchè mi sembrava migliore per la sicurezza, evitandomi di utilizzare troppi campi Input.
 Una volta inseriti tutti i campi è possibile generare un nuovo teatro, l'operazione viene gestita da una classe che crea un nuovo teatro vuoto delle dimensioni indicate.
