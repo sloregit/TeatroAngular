@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, map, Subscription, Subscriber } from 'rxjs';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class FakesvcService {
-  constructor() {}
+  constructor(private http: HttpClient) {}
   public getPrenotazioni$(key: string): Observable<string> {
     return new Observable((subscriber) => {
       subscriber.next(

@@ -7,6 +7,10 @@ import { TeatroDBService } from './teatro-db.service';
 import { GestioneComponent } from './gestione/gestione.component';
 import { FakesvcService } from './fakesvc.service';
 import { Observable } from 'rxjs';
+import {
+  HttpClientTestingModule,
+  HttpTestingController,
+} from '@angular/common/http/testing';
 
 describe('Testing tests', () => {
   it('Vero = vero', () => expect(true).toBeTrue());
@@ -17,7 +21,7 @@ describe('AppComponent', () => {
   beforeEach(
     waitForAsync(() => {
       TestBed.configureTestingModule({
-        imports: [BrowserModule, FormsModule, HttpClientModule],
+        imports: [HttpClientModule, HttpClientTestingModule],
         providers: [
           AppComponent,
           { provide: TeatroDBService, useClass: FakesvcService },
@@ -34,7 +38,7 @@ describe('AppComponent', () => {
     () => {
       const fixture = TestBed.createComponent(AppComponent);
       const app = fixture.debugElement.componentInstance;
-      app.getPrenotazioni$('chiave');
+      app.getDati('chiave');
       expect(app.teatro$).toEqual(
         new Observable((subscriber) =>
           subscriber.next({

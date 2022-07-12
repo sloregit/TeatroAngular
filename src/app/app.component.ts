@@ -67,7 +67,9 @@ export class AppComponent {
         this.error = 'Errore in aggiornaPrenotazioni: ' + e;
         console.error('Errore in aggiornaPrenotazioni: ' + e);
       },
-      complete: () => this.sub.unsubscribe(),
+      complete: () => {
+        /*this.sub.unsubscribe()*/
+      },
     });
   }
   //Preleva i dati utilizzando la chiave ottenuta da LoginComponent
