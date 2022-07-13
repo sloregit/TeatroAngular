@@ -1,11 +1,11 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   @Input() rapido: boolean;
   @Output() rapidoChange = new EventEmitter<boolean>();
   @Output() chiaveUtenteEmitter = new EventEmitter<string>();
@@ -16,5 +16,4 @@ export class LoginComponent implements OnInit {
     this.chiaveUtenteEmitter.emit(this.chiaveUtente);
     this.rapidoChange.emit(this.rapido);
   }
-  ngOnInit() {}
 }
