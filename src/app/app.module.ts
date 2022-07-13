@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
-import { TeatroDBService } from './teatro-db.service';
+import { GeneraTeatro, TeatroDBService } from './teatro-db.service';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
@@ -18,6 +18,6 @@ import { GestioneComponent } from './gestione/gestione.component';
     GestioneComponent,
   ],
   bootstrap: [AppComponent],
-  providers: [TeatroDBService],
+  providers: [TeatroDBService, GeneraTeatro],
 })
 export class AppModule {}

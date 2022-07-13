@@ -2,12 +2,7 @@ import { Component } from '@angular/core';
 import { Observable, of, Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { TeatroDBService } from './teatro-db.service';
-import { Prenotazione } from './teatro/teatro.component';
-
-export class Teatro {
-  platea: Array<Array<string>>;
-  palco: Array<Array<string>>;
-}
+import { Teatro, Prenotazione } from './classi-comuni';
 
 @Component({
   selector: 'my-app',

@@ -1,39 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { Teatro } from '../app.component';
-import { TeatroDBService } from '../teatro-db.service';
-
-export class GestoreTeatro {
-  teatro: Teatro;
-  constructor() {
-    this.teatro = new Teatro();
-  }
-  impostaTeatro(
-    filePlatea: number,
-    postiPlatea: number,
-    filePalco: number,
-    postipalco: number
-  ) {
-    this.teatro.platea = Array(filePlatea)
-      .fill('fila')
-      .map(() =>
-        Array(postiPlatea)
-          .fill('posto')
-          .map(() => {
-            return undefined;
-          })
-      );
-    this.teatro.palco = Array(filePalco)
-      .fill('fila')
-      .map(() =>
-        Array(postipalco)
-          .fill('posto')
-          .map(() => {
-            return undefined;
-          })
-      );
-  }
-}
+import { Teatro } from '../classi-comuni';
+import { TeatroDBService, GeneraTeatro } from '../teatro-db.service';
 
 @Component({
   selector: 'app-gestione',
@@ -41,7 +9,7 @@ export class GestoreTeatro {
   styleUrls: ['./gestione.component.css'],
 })
 export class GestioneComponent implements OnInit {
-  gestore: GestoreTeatro;
+  newTeatro: Teatro;
   filePlateaMax: Array<string>;
   postiPlateaMax: Array<string>;
   filePalchiMax: Array<string>;
@@ -51,7 +19,10 @@ export class GestioneComponent implements OnInit {
   newKey: string;
   conferma: string;
   error: string;
-  constructor(private TeatroDBservice: TeatroDBService) {
+  constructor(
+    private TeatroDBservice: TeatroDBService,
+    private genera: GeneraTeatro
+  ) {
     this.filePlateaMax = new Array(7);
     this.postiPlateaMax = new Array(10);
     this.filePalchiMax = new Array(6);
@@ -68,9 +39,10 @@ export class GestioneComponent implements OnInit {
       complete: () => this.sub.unsubscribe(),
     });
   }
+
   //Genera un nuovo teatro e lo inserisce in corrispondenza della chiave;
-  //Utilizza la classe GestoreTeatro per creare il teatro
-  //(nel Template) +string per trasformare la stringa in numero
+  //Utilizza GeneraTeatro (in TeatroDBService) per creare il teatro
+  //+string(nel Template) per trasformare la stringa in numero
   aggiungiTeatro(
     filePlatea: number,
     postiPlatea: number,
@@ -81,8 +53,7 @@ export class GestioneComponent implements OnInit {
       if (!this.key) throw 'Inserisci una chiave';
       if (!filePlatea || !postiPlatea || !filePalco || !postiPalco)
         throw 'Devi prima completare la configurazione dei posti';
-      this.gestore = new GestoreTeatro();
-      this.gestore.impostaTeatro(
+      this.newTeatro = this.genera.impostaTeatro(
         filePlatea,
         postiPlatea,
         filePalco,
@@ -90,14 +61,18 @@ export class GestioneComponent implements OnInit {
       );
     } catch (e) {
       this.error = e;
+      console.error(this.error);
+      this.conferma = undefined;
     }
-    if (this.gestore) {
+    if (this.newTeatro && this.key) {
       this.sub = this.TeatroDBservice.SetPrenotazioni$(
         this.key,
-        JSON.stringify(this.gestore.teatro)
+        JSON.stringify(this.newTeatro)
       ).subscribe({
-        next: (conf) =>
+        next: (conf) => {
           (this.conferma = conf + ': Teatro aggiunto, Chiave: ' + this.key),
+            (this.error = undefined);
+        },
         error: (err) => {
           (this.error = 'Errore in SetPrenotazioni$: ' + err),
             console.error(this.error);

@@ -8,20 +8,7 @@ import {
 } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
-import { Teatro } from '../app.component';
-
-export class Prenotazione {
-  zona: string;
-  nome: string;
-  fila: number;
-  posto: number;
-  constructor(nome: string, zona: string, fila: number, posto: number) {
-    this.nome = nome;
-    this.zona = zona;
-    this.fila = fila;
-    this.posto = posto;
-  }
-}
+import { Teatro, Prenotazione } from '../classi-comuni';
 
 @Component({
   selector: 'app-teatro',
