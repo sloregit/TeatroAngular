@@ -33,7 +33,7 @@ Quando viene ricevuta una prenotazione, essa contiene il nome, la zona, la fila 
 #### Teatro.component
 
 Il teatro vero e proprio, i dati vengono raccolti ed elaborati nella funzione OnInit, invocata subito dopo la creazione del component. La guida di angular consiglia di elaborare i dati in questo punto, al di fuori del costruttore:
-[https://angular.io/guide/lifecycle-hooks#oninit]
+(https://angular.io/guide/lifecycle-hooks#oninit)
 
 Quando viene effettuata una prenotazione, rapida o normale, si innesca (prenotazione Emitter) che, inviando la nuova prenotazione al parent fa aggiornare il teatro.
 
@@ -59,6 +59,8 @@ Ho preferito questa soluzione perchè, oltre alla questione estetica, mi sembrav
 
 Una volta inseriti tutti i campi è possibile generare un nuovo teatro, l'operazione viene gestita con la classe @injectable GeneraTeatro che crea un nuovo teatro vuoto delle dimensioni indicate.
 
-## angular-ivy-xzskob
+[App su firebase](https://teatroangular-f8c43.firebaseapp.com/?36604)
+
+#### angular-ivy-xzskob
 
 [Edit on StackBlitz ⚡️](https://stackblitz.com/edit/angular-ivy-xzskob)
