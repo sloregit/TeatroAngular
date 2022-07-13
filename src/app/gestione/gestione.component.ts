@@ -61,14 +61,18 @@ export class GestioneComponent implements OnInit {
       );
     } catch (e) {
       this.error = e;
+      console.error(this.error);
+      this.conferma = undefined;
     }
-    if (this.newTeatro) {
+    if (this.newTeatro && this.key) {
       this.sub = this.TeatroDBservice.SetPrenotazioni$(
         this.key,
         JSON.stringify(this.newTeatro)
       ).subscribe({
-        next: (conf) =>
+        next: (conf) => {
           (this.conferma = conf + ': Teatro aggiunto, Chiave: ' + this.key),
+            (this.error = undefined);
+        },
         error: (err) => {
           (this.error = 'Errore in SetPrenotazioni$: ' + err),
             console.error(this.error);
