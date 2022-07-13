@@ -18,6 +18,7 @@ export class TeatroDBService {
     return this.http.get<string>(this.URL + 'new?secret=ssw2022');
   }
 }
+
 @Injectable()
 export class GeneraTeatro {
   teatro: Teatro;
