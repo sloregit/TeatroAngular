@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Teatro } from '../classi-comuni';
 import { TeatroDBService, GeneraTeatro } from '../teatro-db.service';
@@ -8,7 +8,7 @@ import { TeatroDBService, GeneraTeatro } from '../teatro-db.service';
   templateUrl: './gestione.component.html',
   styleUrls: ['./gestione.component.css'],
 })
-export class GestioneComponent implements OnInit {
+export class GestioneComponent {
   newTeatro: Teatro;
   filePlateaMax: Array<string>;
   postiPlateaMax: Array<string>;
@@ -81,5 +81,4 @@ export class GestioneComponent implements OnInit {
       });
     }
   }
-  ngOnInit() {}
 }
