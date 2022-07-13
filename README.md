@@ -32,7 +32,7 @@ Quando viene ricevuta una prenotazione, essa contiene il nome, la zona, la fila 
 
 #### Teatro.component
 
-Il teatro vero e proprio, i dati vengono raccolti ed elaborati nella funzione OnInit, invocata subito dopo la creazione del component. La guida di angular consiglia di elaborare i dati in questo punto, al di fuori del constructor:
+Il teatro vero e proprio, i dati vengono raccolti ed elaborati nella funzione OnInit, invocata subito dopo la creazione del component. La guida di angular consiglia di elaborare i dati in questo punto, al di fuori del costruttore:
 [https://angular.io/guide/lifecycle-hooks#oninit]
 
 Quando viene effettuata una prenotazione, rapida o normale, si innesca (prenotazione Emitter) che, inviando la nuova prenotazione al parent fa aggiornare il teatro.
