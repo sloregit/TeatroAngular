@@ -2,9 +2,15 @@
 
 ### L'applicazione gestisce le prenotazioni per tutte le sale inserite all'interno del database. Ad ogni sala è associata una chiave univoca.
 
-#### 4 component, 1 Service:
+#### 4 component, 1 Service, 1 file.ts per le classi comuni:
 
-#### TeatroDBservice(3 metodi)
+#### classiComuni.ts
+
+Contiene le classi utilizzate in più component, ho preferito utilizzare un file separato per semplificare il ritrovamento e la gestione di eventuali problemi.
+
+#### TeatroDBservice(2 classi):
+
+##### TeatroDBservice
 
 setPrenotazioni: richiede i dati al database
 
@@ -12,9 +18,13 @@ getPrenotazioni: invia i dati al database
 
 getNewKey: richiede una nuova chiave
 
+##### GeneraTeatro
+
+Genera un nuovo teatro e lo imposta con i valori ricevuti
+
 #### App.component
 
-Gestisce tutte le comunicazioni con il server che servono per generare o aggiornare il Teatro.
+Gestisce tutte le comunicazioni con TeatroDBservice che servono per recuperare o aggiornare i dati del Teatro.
 
 Le prenotazioni in ingresso vengono ricevute, parsate ed inviate come Observable a TeatroComponent. I dati ricevuti vengono memorizzati in 'teatro$'.
 
@@ -26,7 +36,7 @@ Il teatro vero e proprio, i dati vengono raccolti ed elaborati nella funzione On
 
 Quando viene effettuata una prenotazione, rapida o normale, si innesca (prenotazione Emitter) che, inviando la nuova prenotazione al parent fa aggiornare il teatro.
 
-Ogni nuova prenotazione è istanza di una classe Prenotazione:
+Ogni nuova prenotazione è istanza della classe Prenotazione:
 
 ```
 Prenotazione(nomePrenotazione, zona, fila, posto)
@@ -46,7 +56,7 @@ Gestione svolge un compito diverso rispetto agli altri e non ha a che fare con l
 Gli array fileMax,postiMax erano necessari per utilizzare i select + option.
 Ho preferito questa soluzione perchè, oltre alla questione estetica, mi sembrava migliore dal punto di vista della sicurezza, evitandomi di utilizzare troppi campi Input.
 
-Una volta inseriti tutti i campi è possibile generare un nuovo teatro, l'operazione viene gestita da una classe che crea un nuovo teatro vuoto delle dimensioni indicate.
+Una volta inseriti tutti i campi è possibile generare un nuovo teatro, l'operazione viene gestita con la classe @injectable GeneraTeatro che crea un nuovo teatro vuoto delle dimensioni indicate.
 
 ## angular-ivy-xzskob
 
