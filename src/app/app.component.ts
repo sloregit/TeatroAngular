@@ -2,8 +2,7 @@ import { Component } from '@angular/core';
 import { Observable, of, Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { TeatroDBService } from './teatro-db.service';
-import { Teatro } from './classi-comuni';
-import { Prenotazione } from './teatro/teatro.component';
+import { Teatro, Prenotazione } from './classi-comuni';
 
 @Component({
   selector: 'my-app',
@@ -67,6 +66,7 @@ export class AppComponent {
     });
   }
   //Preleva i dati utilizzando la chiave ottenuta da LoginComponent
+  //Quando teatro$ assume un valore, TeatroComponent viene visualizzato
   getDati(chiave: string) {
     this.chiaveUtente = chiave;
     this.sub = this.TeatroDBService.getPrenotazioni$(this.chiaveUtente)

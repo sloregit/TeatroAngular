@@ -39,10 +39,10 @@ export class GestioneComponent implements OnInit {
       complete: () => this.sub.unsubscribe(),
     });
   }
+
   //Genera un nuovo teatro e lo inserisce in corrispondenza della chiave;
   //Utilizza GeneraTeatro (in TeatroDBService) per creare il teatro
-  //(nel Template) +string per trasformare la stringa in numero
-
+  //+string(nel Template) per trasformare la stringa in numero
   aggiungiTeatro(
     filePlatea: number,
     postiPlatea: number,
