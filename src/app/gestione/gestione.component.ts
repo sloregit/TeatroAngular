@@ -2,39 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Teatro } from '../classi-comuni';
 import { TeatroDBService, GeneraTeatro } from '../teatro-db.service';
-/*
-export class GestoreTeatro {
-  teatro: Teatro;
-  constructor() {
-    this.teatro = new Teatro();
-  }
-  impostaTeatro(
-    filePlatea: number,
-    postiPlatea: number,
-    filePalco: number,
-    postipalco: number
-  ) {
-    this.teatro.platea = Array(filePlatea)
-      .fill('fila')
-      .map(() =>
-        Array(postiPlatea)
-          .fill('posto')
-          .map(() => {
-            return undefined;
-          })
-      );
-    this.teatro.palco = Array(filePalco)
-      .fill('fila')
-      .map(() =>
-        Array(postipalco)
-          .fill('posto')
-          .map(() => {
-            return undefined;
-          })
-      );
-  }
-}
-*/
+
 @Component({
   selector: 'app-gestione',
   templateUrl: './gestione.component.html',
@@ -72,12 +40,9 @@ export class GestioneComponent implements OnInit {
     });
   }
   //Genera un nuovo teatro e lo inserisce in corrispondenza della chiave;
-  //Utilizza la classe GestoreTeatro per creare il teatro
+  //Utilizza GeneraTeatro (in TeatroDBService) per creare il teatro
   //(nel Template) +string per trasformare la stringa in numero
-  foo() {
-    let a = this.genera.impostaTeatro(2, 2, 2, 2);
-    console.log(a);
-  }
+
   aggiungiTeatro(
     filePlatea: number,
     postiPlatea: number,
@@ -88,7 +53,6 @@ export class GestioneComponent implements OnInit {
       if (!this.key) throw 'Inserisci una chiave';
       if (!filePlatea || !postiPlatea || !filePalco || !postiPalco)
         throw 'Devi prima completare la configurazione dei posti';
-
       this.newTeatro = this.genera.impostaTeatro(
         filePlatea,
         postiPlatea,

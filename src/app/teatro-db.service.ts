@@ -1,11 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of, map, Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Teatro } from './classi-comuni';
-/*export interface Spettacolo {
-  nomeSpettacolo: string;
-  teatro: Teatro;
-}*/
 
 @Injectable()
 export class TeatroDBService {
