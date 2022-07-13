@@ -25,15 +25,14 @@ export class TeatroDBService {
 @Injectable()
 export class GeneraTeatro {
   teatro: Teatro;
-  constructor() {
-    this.teatro = new Teatro();
-  }
-  impostaTeatro(
+  constructor() {}
+  public impostaTeatro(
     filePlatea: number,
     postiPlatea: number,
     filePalco: number,
     postipalco: number
   ) {
+    this.teatro = new Teatro();
     this.teatro.platea = Array(filePlatea)
       .fill('fila')
       .map(() =>
@@ -52,5 +51,6 @@ export class GeneraTeatro {
             return undefined;
           })
       );
+    return this.teatro;
   }
 }

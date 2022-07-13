@@ -75,8 +75,8 @@ export class GestioneComponent implements OnInit {
   //Utilizza la classe GestoreTeatro per creare il teatro
   //(nel Template) +string per trasformare la stringa in numero
   foo() {
-    console.log(this.genera.teatro);
-    //console.log(this.genera.impostaTeatro(1, 2, 3, 4));
+    let a = this.genera.impostaTeatro(2, 2, 2, 2);
+    console.log(a);
   }
   aggiungiTeatro(pippo, paperino, topolino, minnie) {}
   /* aggiungiTeatro(
@@ -91,7 +91,7 @@ export class GestioneComponent implements OnInit {
         throw 'Devi prima completare la configurazione dei posti';
 
       this.gestore = new GestoreTeatro();
-      this.gestore.impostaTeatro(
+      this.genera.impostaTeatro(
         filePlatea,
         postiPlatea,
         filePalco,
