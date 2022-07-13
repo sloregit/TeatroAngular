@@ -2,7 +2,7 @@
 
 #### L'applicazione gestisce le prenotazioni per tutte le sale inserite all'interno del database. Ad ogni sala è associata una chiave univoca.
 
-### 4 component, 1 Service, 1 file.ts per le classi comuni:
+### 4 component, 1 Service, 1 file classiComuni.ts per le classi comuni:
 
 #### classiComuni.ts
 
