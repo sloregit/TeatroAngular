@@ -41,7 +41,7 @@ export class GestoreTeatro {
   styleUrls: ['./gestione.component.css'],
 })
 export class GestioneComponent implements OnInit {
-  //gestore: GestoreTeatro;
+  newTeatro: Teatro;
   filePlateaMax: Array<string>;
   postiPlateaMax: Array<string>;
   filePalchiMax: Array<string>;
@@ -78,8 +78,7 @@ export class GestioneComponent implements OnInit {
     let a = this.genera.impostaTeatro(2, 2, 2, 2);
     console.log(a);
   }
-  aggiungiTeatro(pippo, paperino, topolino, minnie) {}
-  /* aggiungiTeatro(
+  aggiungiTeatro(
     filePlatea: number,
     postiPlatea: number,
     filePalco: number,
@@ -90,8 +89,7 @@ export class GestioneComponent implements OnInit {
       if (!filePlatea || !postiPlatea || !filePalco || !postiPalco)
         throw 'Devi prima completare la configurazione dei posti';
 
-      this.gestore = new GestoreTeatro();
-      this.genera.impostaTeatro(
+      this.newTeatro = this.genera.impostaTeatro(
         filePlatea,
         postiPlatea,
         filePalco,
@@ -100,10 +98,10 @@ export class GestioneComponent implements OnInit {
     } catch (e) {
       this.error = e;
     }
-    if (this.gestore) {
+    if (this.newTeatro) {
       this.sub = this.TeatroDBservice.SetPrenotazioni$(
         this.key,
-        JSON.stringify(this.gestore.teatro)
+        JSON.stringify(this.newTeatro)
       ).subscribe({
         next: (conf) =>
           (this.conferma = conf + ': Teatro aggiunto, Chiave: ' + this.key),
@@ -114,6 +112,6 @@ export class GestioneComponent implements OnInit {
         complete: () => this.sub.unsubscribe(),
       });
     }
-  }*/
+  }
   ngOnInit() {}
 }
