@@ -1,15 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of, map, Subscription } from 'rxjs';
-
-export interface Spettacolo {
+import { Teatro } from './classi-comuni';
+/*export interface Spettacolo {
   nomeSpettacolo: string;
   teatro: Teatro;
-}
-export interface Teatro {
-  platea: Array<Array<string>>;
-  palco: Array<Array<string>>;
-}
+}*/
+
 @Injectable()
 export class TeatroDBService {
   URL: string =
@@ -23,5 +20,37 @@ export class TeatroDBService {
   }
   public getNewKey$(): Observable<string> {
     return this.http.get<string>(this.URL + 'new?secret=ssw2022');
+  }
+}
+@Injectable()
+export class GeneraTeatro {
+  teatro: Teatro;
+  constructor() {
+    this.teatro = new Teatro();
+  }
+  impostaTeatro(
+    filePlatea: number,
+    postiPlatea: number,
+    filePalco: number,
+    postipalco: number
+  ) {
+    this.teatro.platea = Array(filePlatea)
+      .fill('fila')
+      .map(() =>
+        Array(postiPlatea)
+          .fill('posto')
+          .map(() => {
+            return undefined;
+          })
+      );
+    this.teatro.palco = Array(filePalco)
+      .fill('fila')
+      .map(() =>
+        Array(postipalco)
+          .fill('posto')
+          .map(() => {
+            return undefined;
+          })
+      );
   }
 }

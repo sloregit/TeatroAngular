@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { Teatro } from '../app.component';
-import { TeatroDBService } from '../teatro-db.service';
-
+import { Teatro } from '../classi-comuni';
+import { TeatroDBService, GeneraTeatro } from '../teatro-db.service';
+/*
 export class GestoreTeatro {
   teatro: Teatro;
   constructor() {
@@ -34,14 +34,14 @@ export class GestoreTeatro {
       );
   }
 }
-
+*/
 @Component({
   selector: 'app-gestione',
   templateUrl: './gestione.component.html',
   styleUrls: ['./gestione.component.css'],
 })
 export class GestioneComponent implements OnInit {
-  gestore: GestoreTeatro;
+  //gestore: GestoreTeatro;
   filePlateaMax: Array<string>;
   postiPlateaMax: Array<string>;
   filePalchiMax: Array<string>;
@@ -51,7 +51,10 @@ export class GestioneComponent implements OnInit {
   newKey: string;
   conferma: string;
   error: string;
-  constructor(private TeatroDBservice: TeatroDBService) {
+  constructor(
+    private TeatroDBservice: TeatroDBService,
+    private genera: GeneraTeatro
+  ) {
     this.filePlateaMax = new Array(7);
     this.postiPlateaMax = new Array(10);
     this.filePalchiMax = new Array(6);
@@ -71,7 +74,12 @@ export class GestioneComponent implements OnInit {
   //Genera un nuovo teatro e lo inserisce in corrispondenza della chiave;
   //Utilizza la classe GestoreTeatro per creare il teatro
   //(nel Template) +string per trasformare la stringa in numero
-  aggiungiTeatro(
+  foo() {
+    console.log(this.genera.teatro);
+    //console.log(this.genera.impostaTeatro(1, 2, 3, 4));
+  }
+  aggiungiTeatro(pippo, paperino, topolino, minnie) {}
+  /* aggiungiTeatro(
     filePlatea: number,
     postiPlatea: number,
     filePalco: number,
@@ -81,6 +89,7 @@ export class GestioneComponent implements OnInit {
       if (!this.key) throw 'Inserisci una chiave';
       if (!filePlatea || !postiPlatea || !filePalco || !postiPalco)
         throw 'Devi prima completare la configurazione dei posti';
+
       this.gestore = new GestoreTeatro();
       this.gestore.impostaTeatro(
         filePlatea,
@@ -105,6 +114,6 @@ export class GestioneComponent implements OnInit {
         complete: () => this.sub.unsubscribe(),
       });
     }
-  }
+  }*/
   ngOnInit() {}
 }

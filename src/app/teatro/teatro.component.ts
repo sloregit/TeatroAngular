@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { take } from 'rxjs/operators';
-import { Teatro } from '../app.component';
+import { Teatro } from '../classi-comuni';
 
 export class Prenotazione {
   zona: string;
