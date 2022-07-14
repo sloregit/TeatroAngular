@@ -12,9 +12,9 @@ Contiene le classi utilizzate in più component, ho preferito utilizzare un file
 
 ##### TeatroDBservice
 
-setPrenotazioni: richiede i dati al database
+setPrenotazioni: richiede i dati per le prenotazioni
 
-getPrenotazioni: invia i dati al database
+getPrenotazioni: invia i dati delle prenotazioni aggiornate
 
 getNewKey: richiede una nuova chiave
 
