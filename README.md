@@ -20,7 +20,7 @@ getNewKey: richiede una nuova chiave
 
 ##### GeneraTeatro
 
-Genera un nuovo teatro e lo imposta con i valori ricevuti
+Genera prima un nuovo teatro vuoto utilizzando la classe "Teatro", poi lo imposta con i valori ricevuti
 
 #### App.component
 
@@ -32,10 +32,10 @@ Quando viene ricevuta una prenotazione, essa contiene il nome, la zona, la fila 
 
 #### Teatro.component
 
-Il teatro vero e proprio, i dati vengono raccolti ed elaborati nella funzione OnInit, invocata subito dopo la creazione del component. La guida di angular consiglia di elaborare i dati in questo punto, al di fuori del costruttore:
+Il component che costruisce il teatro vero e proprio. I dati vengono prelevati dall'Observable che gli viene passato dal parent ed elaborati nella funzione OnInit, invocata subito dopo la creazione del component. La guida di angular consiglia di elaborare i dati in questo punto, al di fuori del costruttore:
 (https://angular.io/guide/lifecycle-hooks#oninit)
 
-Quando viene effettuata una prenotazione, rapida o normale, si innesca (prenotazione Emitter) che, inviando la nuova prenotazione al parent fa aggiornare il teatro.
+Quando viene effettuata una prenotazione, rapida o normale, viene innescato (prenotazione Emitter) un @Output()EventEmitter che, passando la prenotazione al parent, fa aggiornare il teatro.
 
 Ogni nuova prenotazione è istanza della classe Prenotazione:
 
@@ -46,15 +46,15 @@ Prenotazione(nomePrenotazione, zona, fila, posto)
 #### Login.component
 
 La pagina di login.
-Passa al parent la chiave utente e il tipo di prenotazione nel momento in cui si decide di procedere con la prenotazione
+Passa al parent la chiave utente e il tipo di prenotazione nel momento in cui si decide di procedere con la prenotazione.
 
 #### Gestione.component
 
 Permette di creare una nuova sala e di inserirla in corrispondenza della chiave posseduta. Al bisogno, è possibile richiedere una nuova chiave.
 
-Gestione svolge un compito diverso rispetto agli altri e non ha a che fare con le prenotazioni, perciò è stato pensato come un component a sé stante ed ho preferito renderlo indipendente per quanto riguarda le comunicazioni con il server.
+Gestione svolge un compito diverso rispetto agli altri e non ha direttamente a che fare con le prenotazioni, perciò lo ho pensato come un component a sé stante ed ho preferito renderlo indipendente per quanto riguarda le comunicazioni con il server (non passa, nè riceve alcun valore all' appComponent).
 
-Gli array fileMax,postiMax erano necessari per utilizzare i select + option.
+Gli array fileMax,postiMax inizializzati nel costruttore erano necessari per utilizzare i <select> + <option>.
 Ho preferito questa soluzione perchè, oltre alla questione estetica, mi sembrava migliore dal punto di vista della sicurezza, evitandomi di utilizzare troppi campi Input.
 
 Una volta inseriti tutti i campi è possibile generare un nuovo teatro, l'operazione viene gestita con la classe @injectable GeneraTeatro che crea un nuovo teatro vuoto delle dimensioni indicate.
