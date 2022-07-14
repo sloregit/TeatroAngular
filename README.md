@@ -6,7 +6,7 @@
 
 #### classiComuni.ts
 
-Contiene le classi utilizzate in più component, ho preferito utilizzare un file separato per semplificare il ritrovamento e la gestione di eventuali problemi.
+Contiene le classi utilizzate in più component, ho preferito utilizzare un file separato per semplificare il ritrovamento e la gestione di eventuali problemi. 
 
 #### TeatroDBservice(2 classi):
 
