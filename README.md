@@ -57,9 +57,9 @@ Gestione svolge un compito diverso rispetto agli altri e non ha direttamente a c
 Gli array fileMax,postiMax inizializzati nel costruttore erano necessari per utilizzare i select + option.
 Ho preferito questa soluzione perchè, al di là della questione estetica, mi sembrava migliore dal punto di vista della sicurezza, evitandomi di utilizzare troppi campi Input.
 
-Una volta inseriti tutti i campi è possibile generare un nuovo teatro, l'operazione viene gestita con la classe @injectable GeneraTeatro che crea un nuovo teatro vuoto delle dimensioni indicate.
+Una volta completati tutti i campi è possibile generare un nuovo teatro, l'operazione viene gestita con la classe @injectable GeneraTeatro che crea un nuovo teatro vuoto delle dimensioni indicate.
 
-[App su firebase](https://teatroangular-f8c43.firebaseapp.com/?36604)
+[l'App su firebase](https://teatroangular-f8c43.firebaseapp.com/?36604)
 
 #### angular-ivy-xzskob
 
