@@ -54,8 +54,8 @@ Permette di creare una nuova sala e di inserirla in corrispondenza della chiave 
 
 Gestione svolge un compito diverso rispetto agli altri e non ha direttamente a che fare con le prenotazioni, perciò lo ho pensato come un component a sé stante ed ho preferito renderlo indipendente per quanto riguarda le comunicazioni con il server (non passa, nè riceve alcun valore all' appComponent).
 
-Gli array fileMax,postiMax inizializzati nel costruttore erano necessari per utilizzare i <select> + <option>.
-Ho preferito questa soluzione perchè, oltre alla questione estetica, mi sembrava migliore dal punto di vista della sicurezza, evitandomi di utilizzare troppi campi Input.
+Gli array fileMax,postiMax inizializzati nel costruttore erano necessari per utilizzare i select + option.
+Ho preferito questa soluzione perchè, al di là della questione estetica, mi sembrava migliore dal punto di vista della sicurezza, evitandomi di utilizzare troppi campi Input.
 
 Una volta inseriti tutti i campi è possibile generare un nuovo teatro, l'operazione viene gestita con la classe @injectable GeneraTeatro che crea un nuovo teatro vuoto delle dimensioni indicate.
 
